@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ClientComponent } from './client.component';
 import { PriseRendezVousComponent } from './components/prise-rendez-vous/prise-rendez-vous.component';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
@@ -21,4 +22,8 @@ const routes: Routes = [
   },
 ];
 
-export const ClientRoutes = RouterModule.forChild(routes);
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class ClientRoutes { }

@@ -1,6 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 import { GeneralComponent } from './general.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './pages/home/home.component';
+import { NgModule } from '@angular/core';
+import { DetailsComponent } from './pages/details/details.component';
 
 const routes: Routes = [
   {
@@ -12,6 +14,10 @@ const routes: Routes = [
         component: HomeComponent, // child route component that the router renders
       },
       {
+        path: 'details', // child route path
+        component: DetailsComponent, // child route component that the router renders
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'
@@ -21,4 +27,8 @@ const routes: Routes = [
   },
 ];
 
-export const GeneralRoutes = RouterModule.forChild(routes);
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class GeneralRoutes { }
