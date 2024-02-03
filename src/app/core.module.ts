@@ -1,3 +1,4 @@
+import { MenubarModule } from 'primeng/menubar';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -54,6 +55,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     SelectButtonModule,
     ProgressSpinnerModule,
     RadioButtonModule,
+    MenubarModule
   ],
   exports: [
     MenuModule,
@@ -82,7 +84,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     TooltipModule,
     SelectButtonModule,
     ProgressSpinnerModule,
-    RadioButtonModule
+    RadioButtonModule,
+    MenubarModule
   ],
 })
 export class CoreModule { }
