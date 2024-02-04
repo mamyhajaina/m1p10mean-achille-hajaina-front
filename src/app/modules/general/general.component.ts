@@ -10,6 +10,8 @@ export class GeneralComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    var $toggle = document.getElementsByTagName('body')[0];
+    $toggle.classList.add('toggle-sidebar');
   }
 
 }
