@@ -22,7 +22,11 @@ export class MenuAdminComponent implements OnInit {
     if (this.typeMenu == 'client') {
       this.menu = Menu.menuClient;
       console.log("menu: " + this.menu);
-    } else {
+    }
+    else if (this.typeMenu == 'employe') {
+      this.menu = Menu.menuEmploye;
+    }
+    else if (this.typeMenu == 'manager') {
       this.menu = Menu.menuManager;
     }
   }
