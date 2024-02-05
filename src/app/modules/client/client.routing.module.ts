@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ClientComponent } from './client.component';
-import { PriseRendezVousComponent } from './components/prise-rendez-vous/prise-rendez-vous.component';
 import { NgModule } from '@angular/core';
+import { RendezVousComponent } from './pages/rendez-vous/rendez-vous.component';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
     children: [
       {
         path: 'priseRendezVous', // child route path
-        component: PriseRendezVousComponent, // child route component that the router renders
+        component: RendezVousComponent, // child route component that the router renders
       },
       {
         path: '',

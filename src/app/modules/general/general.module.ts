@@ -9,6 +9,7 @@ import { HeaderAdminComponent } from './components/Header-Admin/Header-Admin.com
 import { CategorieComponent } from './components/categorie/categorie.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { MenuAdminComponent } from './components/menu-Admin/menu-Admin.component';
+import { LogoAndNameSiteComponent } from './components/logo-and-name-site/logo-and-name-site.component';
 
 @NgModule({
   imports: [
@@ -23,13 +24,15 @@ import { MenuAdminComponent } from './components/menu-Admin/menu-Admin.component
     HeaderAdminComponent,
     CategorieComponent,
     DetailsComponent,
-    MenuAdminComponent
+    MenuAdminComponent,
+    LogoAndNameSiteComponent
   ],
   exports: [
     NavBarComponent,
     FooterComponent,
     HeaderAdminComponent,
-    MenuAdminComponent
+    MenuAdminComponent,
+    LogoAndNameSiteComponent
   ]
 })
 export class GeneralModule { }
