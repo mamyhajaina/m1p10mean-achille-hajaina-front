@@ -1,1 +1,33 @@
-@import '../../assets/assetsHome/css/style.css';
+@import "../../assets/assetsHome/css/style.css";
+
+.background-div {
+  background-image: url("../../../../../../src/assets/image/cvtr.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.text-img {
+  position: absolute;
+  top: 5%;
+  left: 61%;
+  transform: translateX(-50%);
+  animation: bascule 2s ease-in-out infinite alternate;
+}
+
+@keyframes bascule {
+  0% {
+    transform: translateX(-50%) translateX(-50px); /* Bascule vers la gauche */
+  }
+  100% {
+    transform: translateX(-50%) translateX(50px); /* Bascule vers la droite */
+  }
+}
+
+.rating-color {
+  color: #fbc634 !important;
+}
+
+.card-img-top {
+  height: 120px;
+}
