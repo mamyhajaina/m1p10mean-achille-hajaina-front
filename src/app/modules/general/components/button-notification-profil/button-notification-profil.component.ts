@@ -9,16 +9,20 @@ import { environments } from 'src/environments/environments';
 export class ButtonNotificationProfilComponent implements OnInit {
 
   environments = environments;
-  isNotificationsOpen = false;
+  showNotifications: boolean = false;
+  showProfil: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  toggleNotifications(event: Event): void {
-    event.preventDefault(); // Empêcher la redirection par défaut
-    this.isNotificationsOpen = !this.isNotificationsOpen;
+  toggleNotifications(): void {
+    this.showNotifications = !this.showNotifications;
+  }
+
+  toggleProfil(): void {
+    this.showProfil = !this.showProfil;
   }
 
 }
