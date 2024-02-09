@@ -18,6 +18,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { ButtonNotificationProfilComponent } from './components/button-notification-profil/button-notification-profil.component';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   imports: [
@@ -25,7 +29,11 @@ import { ButtonNotificationProfilComponent } from './components/button-notificat
     GeneralRoutes,
     MatDialogModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   declarations: [
     GeneralComponent,
@@ -41,13 +49,13 @@ import { ButtonNotificationProfilComponent } from './components/button-notificat
     ServicesComponent,
     ContactComponent,
     PriseRendezVousComponent,
-    ButtonNotificationProfilComponent
+    ButtonNotificationProfilComponent,
   ],
   exports: [
     FooterAdminComponent,
     HeaderAdminComponent,
     MenuAdminComponent,
-    ButtonNotificationProfilComponent
-  ]
+    ButtonNotificationProfilComponent,
+  ],
 })
-export class GeneralModule { }
+export class GeneralModule {}
