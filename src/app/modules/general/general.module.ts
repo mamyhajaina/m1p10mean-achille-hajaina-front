@@ -9,11 +9,23 @@ import { HeaderAdminComponent } from './components/Header-Admin/Header-Admin.com
 import { CategorieComponent } from './components/categorie/categorie.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { MenuAdminComponent } from './components/menu-Admin/menu-Admin.component';
+import { FooterAdminComponent } from './components/footerAdmin/footerAdmin.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ServicesComponent } from './pages/services/services.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { PriseRendezVousComponent } from './components/prise-rendez-vous/prise-rendez-vous.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { ButtonNotificationProfilComponent } from './components/button-notification-profil/button-notification-profil.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    GeneralRoutes
+    GeneralRoutes,
+    MatDialogModule,
+    MatMenuModule,
+    MatButtonModule
   ],
   declarations: [
     GeneralComponent,
@@ -23,13 +35,19 @@ import { MenuAdminComponent } from './components/menu-Admin/menu-Admin.component
     HeaderAdminComponent,
     CategorieComponent,
     DetailsComponent,
-    MenuAdminComponent
+    MenuAdminComponent,
+    FooterAdminComponent,
+    AboutComponent,
+    ServicesComponent,
+    ContactComponent,
+    PriseRendezVousComponent,
+    ButtonNotificationProfilComponent
   ],
   exports: [
-    NavBarComponent,
-    FooterComponent,
+    FooterAdminComponent,
     HeaderAdminComponent,
-    MenuAdminComponent
+    MenuAdminComponent,
+    ButtonNotificationProfilComponent
   ]
 })
 export class GeneralModule { }

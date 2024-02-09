@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environments } from 'src/environments/environments';
 
 @Component({
   selector: 'app-categorie',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categorie.component.css']
 })
 export class CategorieComponent implements OnInit {
+
+  environments = environments;
 
   constructor() { }
 

@@ -4,11 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'public',
     pathMatch: 'full',
   },
   {
-    path: 'home',
+    path: 'public',
     loadChildren: () =>
       import('./modules/general/general.module').then(
         (m) => m.GeneralModule
@@ -22,8 +22,29 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'client',
+    loadChildren: () =>
+      import('./modules/client/client.module').then(
+        (m) => m.ClientModule
+      ),
+  },
+  {
+    path: 'manager',
+    loadChildren: () =>
+      import('./modules/manager/manager.module').then(
+        (m) => m.ManagerModule
+      ),
+  },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then(
+        (m) => m.AuthModule
+      ),
+  },
+  {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: 'public',
   },
 ];
 

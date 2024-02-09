@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DataResponse } from 'app/modules/general/models/dataResponse';
-import { environments } from 'environments/environments';
+import { DataResponse } from '../../general/models/dataResponse';
+import { environments } from 'src/environments/environments';
 
 @Injectable()
 export class RendezVousService {
