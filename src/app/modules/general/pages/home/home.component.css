@@ -31,3 +31,22 @@
 .card-img-top {
   height: 120px;
 }
+
+.Navigation-module--navTabsWrapper--71a231 a {
+  margin-right: 20px;
+  color: darkslateblue;
+  cursor: pointer;
+}
+
+.Navigation-module--navTabsWrapper--71a231 a:hover {
+  color: #34b7a7;
+}
+
+.Navigation-module--navTabsWrapper--71a231 a:focus {
+  outline: 2px solid #34b7a7;
+}
+
+.Navigation-module--navTabsWrapper--71a231 a:active {
+  color: #34b7a7;
+  text-decoration: underline;
+}
