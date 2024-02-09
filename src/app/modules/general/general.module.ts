@@ -22,6 +22,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SousCategorieComponent } from './components/sous-categorie/sous-categorie.component';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   imports: [
@@ -34,6 +36,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
+    ConfirmPopupModule,
   ],
   declarations: [
     GeneralComponent,
@@ -50,6 +53,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ContactComponent,
     PriseRendezVousComponent,
     ButtonNotificationProfilComponent,
+    SousCategorieComponent,
   ],
   exports: [
     FooterAdminComponent,

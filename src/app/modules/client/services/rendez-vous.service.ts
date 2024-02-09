@@ -5,15 +5,11 @@ import { environments } from 'src/environments/environments';
 
 @Injectable()
 export class RendezVousService {
+  constructor(private http: HttpClient) {}
 
-    constructor(
-        private http: HttpClient,
-    ) { }
-
-    getRendezVous(): any {
-        return this.http.get<DataResponse>(
-            `${environments.BASE_URL}${environments.CONTEXT_PATH}/activite/idVolet`
-        );
-    }
-
+  getRendezVous(): any {
+    return this.http.get<DataResponse>(
+      `${environments.BASE_URL}/activite/idVolet`
+    );
+  }
 }
