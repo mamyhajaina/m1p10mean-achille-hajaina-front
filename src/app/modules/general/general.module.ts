@@ -9,7 +9,6 @@ import { HeaderAdminComponent } from './components/Header-Admin/Header-Admin.com
 import { CategorieComponent } from './components/categorie/categorie.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { MenuAdminComponent } from './components/menu-Admin/menu-Admin.component';
-import { LogoAndNameSiteComponent } from './components/logo-and-name-site/logo-and-name-site.component';
 import { FooterAdminComponent } from './components/footerAdmin/footerAdmin.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ServicesComponent } from './pages/services/services.component';
@@ -45,7 +44,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     CategorieComponent,
     DetailsComponent,
     MenuAdminComponent,
-    LogoAndNameSiteComponent,
     FooterAdminComponent,
     AboutComponent,
     ServicesComponent,
@@ -57,7 +55,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FooterAdminComponent,
     HeaderAdminComponent,
     MenuAdminComponent,
-    LogoAndNameSiteComponent,
+    ButtonNotificationProfilComponent,
   ],
 })
 export class GeneralModule {}
