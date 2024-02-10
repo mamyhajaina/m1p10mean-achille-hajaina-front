@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   getAllCategories() {
     this.categorieService.getAllCategorie().subscribe(
       (res: any) => {
-        this.categories = res;
+        this.categories = res.categories;
       },
       (error: any) => {
         console.error(
