@@ -7,9 +7,16 @@ import { LoginComponent } from './pages/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
-  imports: [CommonModule, AuthRoutes, GeneralModule, FormsModule, ToastModule],
+  imports: [
+    CommonModule,
+    AuthRoutes,
+    GeneralModule,
+    FormsModule,
+    ToastModule,
+    NgxSpinnerModule,
+  ],
   declarations: [AuthComponent, LoginComponent],
   providers: [MessageService],
 })

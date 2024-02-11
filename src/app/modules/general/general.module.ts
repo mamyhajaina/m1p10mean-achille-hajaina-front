@@ -27,6 +27,9 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 import { TopServiceComponent } from './components/top-Service/top-Service.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ButtonModule } from 'primeng/button';
+import { ImageModule } from 'primeng/image';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   imports: [
@@ -42,6 +45,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatFormFieldModule,
     ConfirmPopupModule,
     NgxSpinnerModule,
+    ButtonModule,
+    ImageModule,
+    MenuModule,
   ],
   declarations: [
     GeneralComponent,

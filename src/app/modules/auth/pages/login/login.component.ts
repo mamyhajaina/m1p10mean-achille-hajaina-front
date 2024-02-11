@@ -3,7 +3,7 @@ import { AuthService } from '../../service/auth.service';
 import { User } from '../../model/model';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit() {
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   registerUser() {
+    this.spinner.show('register');
     this.authService.register(this.user).subscribe(
       () => {
         this.checkToken = false;
@@ -37,6 +39,7 @@ export class LoginComponent implements OnInit {
           summary: 'Success',
           detail: 'User enregistrer avec succèes',
         });
+        this.spinner.hide('register');
       },
       (error: any) => {
         this.messageService.add({
@@ -45,12 +48,14 @@ export class LoginComponent implements OnInit {
           summary: 'Error',
           detail: `Une produit s'est produite, veuillez ressayer ou changer le username`,
         });
+        this.spinner.hide('register');
         console.error(error);
       }
     );
   }
 
   login() {
+    this.spinner.show('login');
     this.authService.login(this.username, this.password).subscribe(
       (res: any) => {
         if (res) {
@@ -60,11 +65,13 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('id', _id);
           localStorage.setItem('role', role);
           localStorage.setItem('email', email);
+          this.spinner.hide('login');
           this.navigateHome();
         }
       },
       (error: any) => {
         this.checkToken = true;
+        this.spinner.hide('login');
         console.error(error);
       }
     );

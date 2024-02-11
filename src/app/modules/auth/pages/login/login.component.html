@@ -1,6 +1,12 @@
 <main>
   <p-toast position="top-center" key="tc"></p-toast>
   <div class="main">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="false"
+      [name]="'register'">
+    </ngx-spinner>
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="false"
+      [name]="'login'">
+    </ngx-spinner>
     <input type="checkbox" id="chk" aria-hidden="true">
 
     <div class="signup" *ngIf="!token">
@@ -8,7 +14,9 @@
         <label for="chk" aria-hidden="true">Indentifiez-vous</label>
         <input type="text" name="txt" placeholder="Username" [(ngModel)]="username" required="">
         <input type="password" name="pswd" placeholder="Password" [(ngModel)]="password" required="">
-        <button (click)="login()">Se connecter</button>
+        <button (click)="login()">
+          <span>Se connecter</span>
+        </button>
       </form>
       <p class="error" *ngIf="!checkToken === false">Username ou mot de passe invalide</p>
     </div>
@@ -19,7 +27,9 @@
         <input type="text" name="txt" placeholder="Username" [(ngModel)]="user.username" required="">
         <input type="email" name="email" placeholder="Email" [(ngModel)]="user.email" required="">
         <input type="password" name="pswd" placeholder="Password" [(ngModel)]="user.password" required="">
-        <button (click)="registerUser()">Enregistrer</button>
+        <button (click)="registerUser()">
+          <span>Enregistrer</span>
+        </button>
       </form>
     </div>
 
@@ -27,7 +37,9 @@
       <form>
         <label aria-hidden="true">User connecté</label>
         <button (click)="changePassword()">Change mot de passe</button>
-        <button class="deco" (click)="logout()">Déconnecter</button>
+        <button class="deco" (click)="logout()">
+          <span> Déconnecter </span>
+        </button>
         <br>
         <br>
         <button class="cancel-btn" (click)="navigateHome()">Retour</button>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategorieService } from '../../service/categorie.service';
 import { Categorie } from '../../models/categorie';
 import { io, Socket } from 'socket.io-client';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,9 +14,13 @@ export class HomeComponent implements OnInit {
   categorie: Categorie = new Categorie();
   socket!: Socket;
 
-  constructor(private categorieService: CategorieService) {}
+  constructor(
+    private categorieService: CategorieService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit() {
+    this.spinner.show();
     this.getAllCategories();
     this.socket = io('http://localhost:1200');
     this.socket.on('newCategoryAdded', () => {
@@ -27,8 +32,10 @@ export class HomeComponent implements OnInit {
     this.categorieService.getAllCategorie().subscribe(
       (res: any) => {
         this.categories = res.categories;
+        this.spinner.hide();
       },
       (error: any) => {
+        this.spinner.hide();
         console.error(
           "Une erreur s'est produite lors de la récupération des catégories : ",
           error
