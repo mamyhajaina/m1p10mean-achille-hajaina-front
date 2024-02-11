@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           key: 'tc',
           severity: 'error',
           summary: 'Error',
-          detail: 'Username déjà existé',
+          detail: `Une produit s'est produite, veuillez ressayer ou changer le username`,
         });
         console.error(error);
       }
@@ -76,25 +76,9 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this.authService.logout(this.token).subscribe((message) => {
-      console.log(message);
       this.ngOnInit();
     });
   }
 
-  changePassword() {
-    this.messageService.add({
-      key: 'tc',
-      severity: 'success',
-      summary: 'Success',
-      detail: 'User enregistrer avec succèes',
-    });
-  }
-
-  showError() {
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Message Content',
-    });
-  }
+  changePassword() {}
 }
