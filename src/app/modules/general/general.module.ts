@@ -24,6 +24,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SousCategorieComponent } from './components/sous-categorie/sous-categorie.component';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { TopServiceComponent } from './components/top-Service/top-Service.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -37,6 +39,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     MatInputModule,
     MatFormFieldModule,
     ConfirmPopupModule,
+    NgxSpinnerModule
   ],
   declarations: [
     GeneralComponent,
@@ -54,6 +57,8 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     PriseRendezVousComponent,
     ButtonNotificationProfilComponent,
     SousCategorieComponent,
+    TopServiceComponent,
+    ServicesComponent
   ],
   exports: [
     FooterAdminComponent,
@@ -62,4 +67,4 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     ButtonNotificationProfilComponent,
   ],
 })
-export class GeneralModule {}
+export class GeneralModule { }
