@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategorieService } from '../../service/categorie.service';
 import { Categorie } from '../../models/categorie';
-import { io, Socket } from 'socket.io-client'; // Importez Socket depuis 'socket.io-client'
+import { io, Socket } from 'socket.io-client';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

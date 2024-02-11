@@ -24,9 +24,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SousCategorieComponent } from './components/sous-categorie/sous-categorie.component';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   imports: [
+    ToastModule,
     CommonModule,
     GeneralRoutes,
     MatDialogModule,

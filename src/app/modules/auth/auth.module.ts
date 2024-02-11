@@ -4,18 +4,13 @@ import { AuthComponent } from './auth.component';
 import { AuthRoutes } from './auth.routing.module';
 import { GeneralModule } from '../general/general.module';
 import { LoginComponent } from './pages/login/login.component';
-import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AuthRoutes,
-    GeneralModule,
-  ],
-  declarations: [
-    AuthComponent,
-    LoginComponent,
-    SignInComponent
-  ]
+  imports: [CommonModule, AuthRoutes, GeneralModule, FormsModule, ToastModule],
+  declarations: [AuthComponent, LoginComponent],
+  providers: [MessageService],
 })
-export class AuthModule { }
+export class AuthModule {}
