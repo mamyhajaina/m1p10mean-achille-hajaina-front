@@ -25,6 +25,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SousCategorieComponent } from './components/sous-categorie/sous-categorie.component';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
+import { TopServiceComponent } from './components/top-Service/top-Service.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -39,6 +41,7 @@ import { ToastModule } from 'primeng/toast';
     MatInputModule,
     MatFormFieldModule,
     ConfirmPopupModule,
+    NgxSpinnerModule,
   ],
   declarations: [
     GeneralComponent,
@@ -56,6 +59,8 @@ import { ToastModule } from 'primeng/toast';
     PriseRendezVousComponent,
     ButtonNotificationProfilComponent,
     SousCategorieComponent,
+    TopServiceComponent,
+    ServicesComponent,
   ],
   exports: [
     FooterAdminComponent,
