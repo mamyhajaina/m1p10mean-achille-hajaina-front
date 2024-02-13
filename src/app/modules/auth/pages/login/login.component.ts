@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   password: string = '';
   token: any;
   checkToken: boolean = false;
+  disabledlogin: boolean = false;
 
   constructor(
     private messageService: MessageService,
@@ -55,7 +56,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.spinner.show('login');
+    this.disabledlogin = true;
     this.authService.login(this.username, this.password).subscribe(
       (res: any) => {
         if (res) {
@@ -65,13 +66,13 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('id', _id);
           localStorage.setItem('role', role);
           localStorage.setItem('email', email);
-          this.spinner.hide('login');
+          this.disabledlogin = false;
           this.navigateHome();
         }
       },
       (error: any) => {
+        this.disabledlogin = false;
         this.checkToken = true;
-        this.spinner.hide('login');
         console.error(error);
       }
     );

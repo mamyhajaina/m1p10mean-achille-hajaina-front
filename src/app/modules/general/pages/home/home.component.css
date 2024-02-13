@@ -50,3 +50,69 @@
   color: #34b7a7;
   text-decoration: underline;
 }
+
+.container-div {
+  position: relative;
+  width: 100%;
+}
+
+.div100 {
+  position: relative;
+  z-index: 1;
+  border: 0;
+}
+
+.div50 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  z-index: 2;
+  background-color: #e9e8e6;
+}
+
+.with-padding {
+  padding-top: 2%;
+}
+
+.ListLinks-module--list--4bf07e {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: left;
+  list-style-type: none;
+  padding: 0;
+}
+
+.ListLinks-module--list--4bf07e li {
+  height: 100%;
+  padding: 1% 0;
+  box-sizing: border-box;
+}
+
+.ListLinks-module--link--205474 {
+  color: var(--color-grey-90);
+  font-size: 14px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.image-card {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.image-card .card-body {
+  flex-grow: 1;
+}
+
+.image-card .card-img-top {
+  height: 100%;
+  object-fit: cover;
+}
+
+.cursor-image {
+  cursor: pointer;
+}

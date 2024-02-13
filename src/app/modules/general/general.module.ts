@@ -30,6 +30,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ButtonModule } from 'primeng/button';
 import { ImageModule } from 'primeng/image';
 import { MenuModule } from 'primeng/menu';
+import { DialogModule } from 'primeng/dialog';
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
   imports: [
@@ -48,6 +50,8 @@ import { MenuModule } from 'primeng/menu';
     ButtonModule,
     ImageModule,
     MenuModule,
+    DialogModule,
+    RatingModule,
   ],
   declarations: [
     GeneralComponent,

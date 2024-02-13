@@ -116,3 +116,8 @@ button:hover {
 .cancel-btn:hover {
   background-color: #52837e;
 }
+
+button:disabled {
+  cursor: not-allowed;
+  background-color: #9c8ab1;
+}

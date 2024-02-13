@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CategorieService } from '../../service/categorie.service';
 import { Categorie } from '../../models/categorie';
 import { io, Socket } from 'socket.io-client';
@@ -28,6 +28,13 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: Event) {
+    if (!(event.target as HTMLElement).closest('.host-listner')) {
+      this.showDiv50 = false;
+    }
+  }
+
   getAllCategories() {
     this.categorieService.getAllCategorie().subscribe(
       (res: any) => {
@@ -54,5 +61,11 @@ export class HomeComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  showDiv50: boolean = false;
+
+  toggleDiv50(data: boolean) {
+    this.showDiv50 = data;
   }
 }
