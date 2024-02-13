@@ -6,7 +6,7 @@
         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
           <img src="{{ environments.url_image }}{{ profile.image }}" alt="Profile" class="rounded-circle">
-          <h2>{{ profile.user }}</h2>
+          <h2>{{ profile.username }}</h2>
           <div class="social-links mt-2">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -35,12 +35,16 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label ">Nom et prénom</div>
-                  <div class="col-lg-9 col-md-8">{{ profile.user }}</div>
+                  <div class="col-lg-9 col-md-8">{{ profile.username }}</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Emploi</div>
-                  <div class="col-lg-9 col-md-8">{{ profile.emplois }}</div>
+                  <div class="col-lg-9 col-md-8">
+                    <ul>
+                      <li *ngFor="let item of profile.emplois">{{ item.nom }}</li>
+                    </ul>
+                  </div>
                 </div>
 
                 <div class="row">
@@ -65,7 +69,7 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Solde</div>
-                  <div class="col-lg-9 col-md-8">{{ profile.salaire }}</div>
+                  <div class="col-lg-9 col-md-8">{{ ( profile.solde ? profile.solde : 0) }} Ar</div>
                 </div>
 
               </div>
