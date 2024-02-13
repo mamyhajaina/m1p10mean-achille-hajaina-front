@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   token: any;
   checkToken: boolean = false;
   disabledlogin: boolean = false;
+  sessionTimeout: any;
 
   constructor(
     private messageService: MessageService,
@@ -26,6 +27,26 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.token = localStorage.getItem('token');
+    this.checkSessionTimeout();
+  }
+
+  startSessionTimeout() {
+    clearTimeout(this.sessionTimeout);
+    this.sessionTimeout = setTimeout(() => {
+      this.logout();
+    }, 3600000);
+  }
+
+  checkSessionTimeout() {
+    const lastActivityTime = localStorage.getItem('lastActivityTime');
+    if (lastActivityTime) {
+      const elapsedTime = new Date().getTime() - parseInt(lastActivityTime);
+      if (elapsedTime >= 3600000) {
+        this.logout();
+      } else {
+        this.startSessionTimeout();
+      }
+    }
   }
 
   registerUser() {
@@ -84,6 +105,8 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('emplois', emplois);
           localStorage.setItem('salaire', salaire);
           localStorage.setItem('image', image);
+          this.startSessionTimeout();
+          this.updateLastActivityTime();
           this.navigateHome(role);
           this.disabledlogin = false;
         }
@@ -108,9 +131,14 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this.authService.logout(this.token).subscribe((message) => {
+      clearTimeout(this.sessionTimeout);
       this.ngOnInit();
     });
   }
 
   changePassword() {}
+
+  updateLastActivityTime() {
+    localStorage.setItem('lastActivityTime', new Date().getTime().toString());
+  }
 }
