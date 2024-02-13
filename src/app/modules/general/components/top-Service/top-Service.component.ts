@@ -10,6 +10,7 @@ import { environments } from 'src/environments/environments';
 export class TopServiceComponent implements OnInit {
   topServiceSalon: ServiceSalon[] = [];
   environments = environments.url_image;
+  value: number = 5;
 
   constructor(private serviceSalonService: ServiceSalonService) {}
 

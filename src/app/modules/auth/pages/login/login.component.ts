@@ -15,13 +15,14 @@ export class LoginComponent implements OnInit {
   password: string = '';
   token: any;
   checkToken: boolean = false;
+  disabledlogin: boolean = false;
 
   constructor(
     private messageService: MessageService,
     private router: Router,
     private authService: AuthService,
     private spinner: NgxSpinnerService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.token = localStorage.getItem('token');
@@ -55,13 +56,24 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.spinner.show('login');
+    this.disabledlogin = true;
     this.authService.login(this.username, this.password).subscribe(
       (res: any) => {
         if (res) {
           console.log('res', res);
 
-          const { token, username, _id, role, email, adresse, pays, emplois, salaire, image } = res;
+          const {
+            token,
+            username,
+            _id,
+            role,
+            email,
+            adresse,
+            pays,
+            emplois,
+            salaire,
+            image,
+          } = res;
           localStorage.setItem('token', token);
           localStorage.setItem('user', username);
           localStorage.setItem('id', _id);
@@ -72,13 +84,13 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('emplois', emplois);
           localStorage.setItem('salaire', salaire);
           localStorage.setItem('image', image);
-          this.spinner.hide('login');
           this.navigateHome(role);
+          this.disabledlogin = false;
         }
       },
       (error: any) => {
+        this.disabledlogin = false;
         this.checkToken = true;
-        this.spinner.hide('login');
         console.error(error);
       }
     );
@@ -87,11 +99,9 @@ export class LoginComponent implements OnInit {
   navigateHome(role: string) {
     if (role === 'Emploie') {
       this.router.navigate(['/employe']);
-    }
-    else if (role === 'Manager') {
+    } else if (role === 'Manager') {
       this.router.navigate(['/manager']);
-    }
-    else if (role === 'Client') {
+    } else if (role === 'Client') {
       this.router.navigate(['/home']);
     }
   }
@@ -102,5 +112,5 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  changePassword() { }
+  changePassword() {}
 }

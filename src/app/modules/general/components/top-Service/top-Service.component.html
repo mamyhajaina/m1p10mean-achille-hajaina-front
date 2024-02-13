@@ -12,11 +12,15 @@
             <p-image src="../../../../../assets/assets/img/categorie/{{itemTopServiceSalon.image[0].name}}" alt="Image"
               width="250" [preview]="true"></p-image>
             <div class="card-body">
-              <h6 class="card-title" style="color: darkslateblue;"><strong>{{ itemTopServiceSalon.name }}</strong></h6>
+              <h6 class="card-title" style="color: darkslateblue;">
+                <strong>{{ itemTopServiceSalon.name }}</strong> <br><br>
+                <span>
+                  <p-rating [(ngModel)]="value" [cancel]="false"></p-rating>
+                </span>
+              </h6>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>

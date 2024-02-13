@@ -2,58 +2,116 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" type="square-jelly-box" [fullScreen]="true">
   <p style="color: white"> Chargement... </p>
 </ngx-spinner>
-<div class="container">
+<div class="container host-listner">
   <div class="Navigation-module--navTabs--60f176">
     <div class="Navigation-module--navTabsWrapper--71a231">
-      <a class="NavigationTab-module--link--88cdd6" *ngFor="let item of categories">{{ item.name }}
+      <a class="NavigationTab-module--link--88cdd6" *ngFor="let item of categories" (click)="toggleDiv50(true)">{{
+        item.name
+        }}
       </a>
     </div>
   </div>
 </div>
 <br>
-<div class="card text-center">
-  <div class="card-body" style=" background: linear-gradient(to bottom, #34b7a7, #302b63, #24243e);">
-    <div class="row">
+<div class="container-div host-listner">
+  <div class="card text-center div50" *ngIf="showDiv50">
+    <div class="row with-padding">
       <div class="col-md-2"> </div>
       <div class="col-md-8">
         <div class="row">
           <div class="col-md-4">
-            <div class="card text-center">
-              <div class="card-body">
-                <div class="row">
-                  <ul class="nav nav-pills card-header-pills justify-content-center">
-                    <li class="nav-item">
-                      <i class="bi bi-scissors"></i>
-                      <br>
-                      <a class="active">Prestations</a>
-                    </li>
-                  </ul>
+            <ul class="ListLinks-module--list--4bf07e">
+              <li><a class="ListLinks-module--link--205474" href="" data-label="Coupe femme" data-index="0">Coupe
+                  femme</a></li>
+              <li><a class="ListLinks-module--link--205474" href="" data-label="Coupe homme	" data-index="1">Coupe homme
+                </a></li>
+              <li><a class="ListLinks-module--link--205474" href="" data-label="Brushing" data-index="2">Brushing</a>
+              </li>
+              <li><a class="ListLinks-module--link--205474" href="" data-label="Coloration cheveux femme"
+                  data-index="3">Coloration cheveux femme</a></li>
+              <li><a class="ListLinks-module--link--205474" href="" data-label="Mèches ou balayage"
+                  data-index="4">Mèches ou balayage</a></li>
+              <li><a class="ListLinks-module--link--205474" href="" data-label="Lissage Brésilien à la Kératine femme"
+                  data-index="5">Lissage Brésilien à la Kératine
+                  femme</a></li>
+            </ul>
+            <ul class="ListLinks-module--list--4bf07e">
+              <li><a class="ListLinks-module--link--205474" href="" data-label="Toutes les offres de nos coiffeurs"
+                  data-index="6">Toutes les offres de nos coiffeurs</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-8">
+            <div class="row cursor-image">
+              <div class="col-md-6">
+                <div class="card image-card">
+                  <img src="../../../../../assets/image/coiffure1.webp" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Le temps presse? Réservez une coupe</p>
+                  </div>
                 </div>
-                <br>
-                <input type="text" class="form-control px-3" placeholder="Coiffure">
-                <br>
-                <input type="text" class="form-control px-3" placeholder="Mèches ou balayage">
-                <br>
-                <input type="text" class="form-control px-3">
-                <br>
-                <button type="button" class="btn btn-success px-3">Recherche</button>
+              </div>
+              <div class="col-md-6">
+                <div class="card image-card">
+                  <img src="../../../../../assets/image/coiffure2.webp" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Venez trouver des idées</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-8 background-div">
-            <h4 class="text-img">
-            </h4>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="card text-center div100">
+    <div class="card-body" style=" background: linear-gradient(to bottom, #34b7a7, #302b63, #24243e);">
+      <div class="row">
+        <div class="col-md-2"> </div>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card bg-light text-center">
+                <div class="card-body">
+                  <div class="row">
+                    <ul class="nav nav-pills card-header-pills justify-content-center">
+                      <li class="nav-item">
+                        <i class="bi bi-scissors"></i>
+                        <br>
+                        <a class="active">Prestations</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <br>
+                  <input type="text" class="form-control px-3" placeholder="Coiffure">
+                  <br>
+                  <input type="text" class="form-control px-3" placeholder="Mèches ou balayage">
+                  <br>
+                  <input type="text" class="form-control px-3">
+                  <br>
+                  <button type="button" class="btn btn-success px-3">Recherche</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 background-div">
+              <h4 class="text-img">
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
 </div>
-<br>
-<app-top-Service></app-top-Service>
-<br>
-<br>
 <div>
+  <br>
+  <app-top-Service></app-top-Service>
+</div>
+<div>
+  <br>
+  <br>
   <div>
     <div class="row text-center">
       <h5 for="" style="color: darkslateblue;">La meilleure façon de réserver vois soins beauté</h5>
