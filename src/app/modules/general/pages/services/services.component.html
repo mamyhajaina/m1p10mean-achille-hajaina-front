@@ -1,1 +1,45 @@
-<app-categorie></app-categorie>
+<div class="card div100">
+    <div class="card-body" style=" background: linear-gradient(to bottom, #34b7a7, #302b63, #24243e);">
+        <div class="row">
+            <div class="col-md-2"> </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="flex flex-column md:flex-row gap-3">
+                            <div class="flex justify-content-center">
+                                <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name"
+                                    styleClass="w-100" [filter]="true" filterBy="name" [showClear]="true"
+                                    placeholder="Select a Country">
+                                    <ng-template pTemplate="selectedItem" let-selectedOption>
+                                        <div class="flex align-items-center gap-2">
+                                            <div>{{ selectedOption.name }}</div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template let-country pTemplate="item">
+                                        <div class="flex align-items-center gap-2">
+                                            <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                                                [class]="'flag flag-' + country.code.toLowerCase()"
+                                                style="width: 18px" />
+                                            <div>{{ country.name }}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                            </div>
+                            <br>
+                            <div class="flex justify-content-center">
+                                <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [showIcon]="true"
+                                    styleClass="w-100" [showButtonBar]="true" [readonlyInput]="true"></p-calendar>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 background-div">
+                        <h4 class="text-img">
+                            <b>Coupe homme</b>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
