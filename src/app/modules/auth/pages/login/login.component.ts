@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.token = localStorage.getItem('token');
@@ -90,6 +90,7 @@ export class LoginComponent implements OnInit {
             role,
             email,
             adresse,
+            phone,
             pays,
             emplois,
             salaire,
@@ -102,8 +103,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('email', email);
           localStorage.setItem('pays', pays);
           localStorage.setItem('adresse', adresse);
-          localStorage.setItem('emplois', emplois);
-          localStorage.setItem('salaire', salaire);
+          localStorage.setItem('phone', phone);
+          localStorage.setItem('emplois', JSON.stringify(emplois));
+          localStorage.setItem('salaire', JSON.stringify(salaire));
           localStorage.setItem('image', image);
           this.startSessionTimeout();
           this.updateLastActivityTime();
@@ -136,7 +138,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  changePassword() {}
+  changePassword() { }
 
   updateLastActivityTime() {
     localStorage.setItem('lastActivityTime', new Date().getTime().toString());
