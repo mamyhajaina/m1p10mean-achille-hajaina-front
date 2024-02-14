@@ -1,1 +1,6 @@
-@import '../../assets/assetsHome/css/style.css';
+@import "../../assets/assetsHome/css/style.css";
+
+.text-img {
+  color: white;
+  margin-top: 5%;
+}

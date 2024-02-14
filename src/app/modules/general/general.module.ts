@@ -32,6 +32,11 @@ import { ImageModule } from 'primeng/image';
 import { MenuModule } from 'primeng/menu';
 import { DialogModule } from 'primeng/dialog';
 import { RatingModule } from 'primeng/rating';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextModule } from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   imports: [
@@ -52,6 +57,11 @@ import { RatingModule } from 'primeng/rating';
     MenuModule,
     DialogModule,
     RatingModule,
+    CalendarModule,
+    CheckboxModule,
+    InputTextModule,
+    RadioButtonModule,
+    DropdownModule,
   ],
   declarations: [
     GeneralComponent,
