@@ -9,6 +9,7 @@ export class ServicesComponent implements OnInit {
   visible: boolean = false;
   rangeDates: Date[] | undefined;
   value: string | undefined;
+  valueRating: number = 5;
 
   constructor() {}
 
@@ -29,9 +30,51 @@ export class ServicesComponent implements OnInit {
       { name: 'Spain', code: 'ES' },
       { name: 'United States', code: 'US' },
     ];
+
+    this.images = [
+      {
+        name: 'image',
+        itemImageSrc: '../../../../../assets/assets/img/product-1.jpg',
+      },
+      {
+        name: 'image',
+        itemImageSrc: '../../../../../assets/assets/img/product-2.jpg',
+      },
+      {
+        name: 'image',
+        itemImageSrc: '../../../../../assets/assets/img/product-3.jpg',
+      },
+    ];
   }
 
   showDialog() {
     this.visible = true;
   }
+
+  loading: boolean = false;
+
+  load() {
+    this.loading = true;
+
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
+  }
+
+  images: any[] = [];
+
+  responsiveOptions: any[] = [
+    {
+      breakpoint: '1024px',
+      numVisible: 5,
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 3,
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1,
+    },
+  ];
 }

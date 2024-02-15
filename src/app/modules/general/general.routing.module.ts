@@ -6,6 +6,7 @@ import { DetailsComponent } from './pages/details/details.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { SousCategorieComponent } from './components/sous-categorie/sous-categorie.component';
 
 const routes: Routes = [
   {
@@ -33,9 +34,13 @@ const routes: Routes = [
         component: ContactComponent, // child route component that the router renders
       },
       {
+        path: 'salon', // child route path
+        component: SousCategorieComponent, // child route component that the router renders
+      },
+      {
         path: '',
         redirectTo: 'home',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       { path: '**', redirectTo: 'home', pathMatch: 'full' },
     ],
@@ -44,6 +49,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class GeneralRoutes { }
+export class GeneralRoutes {}

@@ -1,10 +1,10 @@
-<div class="card div100">
-    <div class="card-body" style=" background: linear-gradient(to bottom, #34b7a7, #302b63, #24243e);">
+<div class="card" style=" background: linear-gradient(to bottom, #34b7a7, #302b63, #24243e);">
+    <div class="card-body">
         <div class="row">
             <div class="col-md-2"> </div>
             <div class="col-md-8">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3 text-center">
                         <div class="flex flex-column md:flex-row gap-3">
                             <div class="flex justify-content-center">
                                 <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name"
@@ -30,6 +30,9 @@
                                 <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [showIcon]="true"
                                     styleClass="w-100" [showButtonBar]="true" [readonlyInput]="true"></p-calendar>
                             </div>
+                            <br>
+                            <p-button label="Submit" [loading]="loading" icon="pi pi-search"
+                                styleClass="p-button-sm p-button-success" (onClick)="load()"></p-button>
                         </div>
                     </div>
                     <div class="col-md-8 background-div">
@@ -43,3 +46,142 @@
     </div>
     <br>
 </div>
+<br>
+<div class="row">
+    <div class="col-md-1"> </div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-8 text-center">
+                <div class="flex flex-column md:flex-row gap-3">
+                    <div class="flex justify-content-center">
+                        <p class="text-size">Choisir entre 3774 établissements vous offrant poses d'ongles en gel à
+                            France</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2 text-center">
+                <button type="button" class="btn btn-outline-dark">Filter et trier</button>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+<br>
+<div class="container">
+    <div class="card card-padding">
+        <div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <p-galleria [value]="images" [numVisible]="5" [circular]="true" [showItemNavigators]="true"
+                            [showThumbnails]="false" [responsiveOptions]="responsiveOptions"
+                            [containerStyle]="{ 'max-width': '640px' }">
+                            <ng-template pTemplate="item" let-item>
+                                <img [src]="item.itemImageSrc" style="width: 50%; display: block;" />
+                            </ng-template>
+                        </p-galleria>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row text-size">
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                        laudantium,
+                        totam rem
+                        aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                        explicabo.
+                        Nemo enim ipsam
+                        voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
+                        eos
+                        qui
+                        ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+                    </div>
+                    <br>
+                    <div class="row">
+                        <p-rating [(ngModel)]="valueRating" [cancel]="false"></p-rating>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <p-button label="Emails" badge="8"></p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p-divider></p-divider>
+        <div class="text-size">
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+            aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+            Nemo enim ipsam
+            voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui
+            ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+        </div>
+        <p-divider></p-divider>
+        <div class="text-size">
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
+            sunt in culpa qui
+            officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et
+            expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+        </div>
+        <p-divider></p-divider>
+        <div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-8">
+                    <div class="BrowseResultQuickview-module--description--48c375">
+                        <p class="text-size">Bienvenue chez nüde, un espace dédié à votre bien-être, situé dans le 17ᵉ
+                            arrondissement de
+                            Paris, à quelques pas de l’Arc de Triomphe, où chaque visite est bien plus qu'une simple
+                            séance de soins. Chez "nüde", plongez dans un havre où se mêlent tradition et modernité,
+                            offrant une expérience sensorielle unique. Niché dans une discrète rue du Triangle d’Or,
+                            nüde ne passe pas inaperçu avec sa devanture florale et son exposition en vitrine « Souk
+                            d’herbes et épices ». Une gamme complète de soins de coiffure, coloration aromatique aux
+                            huiles essentiels, des soins du corps à l’épilation, l’onglerie et enfin, pour la beauté du
+                            regard, l’épilation, le microblading redessinent le sourcil et structurent le visage. Le nom
+                            "nüde" incarne notre vision profonde : révéler votre authenticité pour une purification
+                            totale. Il ne s'agit pas seulement de sublimer votre beauté extérieure, mais plutôt de vivre
+                            une expérience où vous pourrez pleinement vous dévoiler et retrouver une harmonie tant
+                            intérieure qu'extérieure… Confiez-vous à notre équipe de techniciennes, qui vous guideront à
+                            travers des prestations inspirées de l'héritage méditerrané.</p>
+
+                        <p><b><i class="text-size">Transports publics les plus proches :</i></b></p>
+
+                        <p><i class="text-size">Le salon est idéalement situé et facilement accessible grâce à sa
+                                proximité avec la
+                                station de métro Argentine (ligne 1) qui n'est qu'à cinq minutes à pied. La ligne A est
+                                également à proximité.</i></p>
+
+                        <p><b><i class="text-size">L'équipe :</i></b></p>
+
+                        <p><i class="text-size">Vous serez accueilli par Jad, une spécialiste de la beauté ravie de
+                                partager son
+                                expertise.</i></p>
+
+                        <p><b><i class="text-size">Nos coups de cœur :</i></b></p>
+
+
+                        <ul>
+                            <li><i class="text-size">L'atmosphère : à l’intérieur, la couleur terracotta évoque
+                                    l'énergie vibrante de
+                                    Marrakech, tandis que le beige, rappelant l'argile, symbole de pureté et l'ancrage à
+                                    la terre.</i></li>
+                            <li><i class="text-size">Les spécialités de l'établissement : les coupes, les brushings, les
+                                    soins et les
+                                    techniques capillaires, la beauté du regard, la beauté des mains et des pieds ainsi
+                                    que l'épilation.</i></li>
+                            <li><i class="text-size">Les marques et produits utilisés : Wella, Ybera Paris et
+                                    Hairborist.</i></li>
+                            <li><i class="text-size">Le petit plus : "nüde" propose aussi une séance de relooking.</i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p-divider></p-divider>
+        <div class="text-center">
+            <button type="button" class="btn btn-danger">Voir le salon</button>
+        </div>
+    </div>
+</div>
+<br>
