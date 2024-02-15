@@ -7,24 +7,28 @@ import { environments } from 'src/environments/environments';
 @Component({
   selector: 'app-gestion-rendez-vous',
   templateUrl: './gestion-rendez-vous.component.html',
-  styleUrls: ['./gestion-rendez-vous.component.css']
+  styleUrls: ['./gestion-rendez-vous.component.css'],
 })
 export class GestionRendezVousComponent implements OnInit {
-
   idUser = localStorage.getItem('id') || '';
   rendezVous: RendezVous[] = [];
   environments = environments;
+  oneRendezVous: RendezVous[] = [];
+  token: any;
 
-  constructor(
-    private rendezVousService: RendezVousService
-  ) { }
+  constructor(private rendezVousService: RendezVousService) {}
 
   ngOnInit() {
+    this.token = localStorage.getItem('token');
     this.getRendezVous();
+    this.getRendezVousByIdEmploye();
   }
 
   getRendezVous() {
-    this.rendezVousService.getRendezVous(this.idUser).subscribe(
+    console.log(this.token, 'token');
+    console.log(this.idUser, 'this.idUser');
+
+    this.rendezVousService.getRendezVous(this.idUser, this.token).subscribe(
       (res: any) => {
         console.log('res', res);
         this.rendezVous = res;
@@ -39,4 +43,11 @@ export class GestionRendezVousComponent implements OnInit {
     );
   }
 
+  getRendezVousByIdEmploye() {
+    this.rendezVousService
+      .getRendezVousByIdEmploye(this.idUser, this.token)
+      .subscribe((res: any) => {
+        console.log(res, 'res employe');
+      });
+  }
 }
