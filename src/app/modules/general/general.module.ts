@@ -39,6 +39,9 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { DividerModule } from 'primeng/divider';
 import { GalleriaModule } from 'primeng/galleria';
+import { DragDropModule } from 'primeng/dragdrop';
+import { TagModule } from 'primeng/tag';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   imports: [
@@ -66,6 +69,9 @@ import { GalleriaModule } from 'primeng/galleria';
     DropdownModule,
     DividerModule,
     GalleriaModule,
+    DragDropModule,
+    TagModule,
+    TableModule,
   ],
   declarations: [
     GeneralComponent,
