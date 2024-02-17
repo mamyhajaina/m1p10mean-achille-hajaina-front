@@ -38,6 +38,10 @@
   cursor: pointer;
 }
 
+.ListLinks-module--list--4bf07e a:hover {
+  color: #ff6668;
+}
+
 .Navigation-module--navTabsWrapper--71a231 a:hover {
   color: #ff6668;
 }
@@ -137,7 +141,7 @@
 
 .div50 {
   width: 100vw;
-  height: 16vw;
+  height: 30%;
   top: 0;
   border-radius: 0;
 }
