@@ -13,7 +13,7 @@ export class ButtonNotificationProfilComponent implements OnInit {
   showNotifications: boolean = false;
   showProfil: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.dataUserConnected.token = localStorage.getItem('token');
@@ -21,6 +21,7 @@ export class ButtonNotificationProfilComponent implements OnInit {
     this.dataUserConnected.id = localStorage.getItem('id');
     this.dataUserConnected.role = localStorage.getItem('role');
     this.dataUserConnected.email = localStorage.getItem('email');
+    this.dataUserConnected.image = localStorage.getItem('image');
     console.log(this.dataUserConnected);
   }
 
@@ -33,6 +34,6 @@ export class ButtonNotificationProfilComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout(this.dataUserConnected.token).subscribe(() => {});
+    this.authService.logout(this.dataUserConnected.token).subscribe(() => { });
   }
 }
