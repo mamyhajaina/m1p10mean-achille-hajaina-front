@@ -41,8 +41,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         <ul class="ListLinks-module--list--4bf07e">
-                            <li *ngFor="let item of responseSearchService"><a class="ListLinks-module--link--205474"
-                                    href="" data-label="Coupe femme" data-index="0">{{item.name}}</a></li>
+                            <li *ngFor="let items of responseSearchService"><a class="ListLinks-module--link--205474"
+                                    href="" data-label="Coupe femme" data-index="0">{{items.name}}</a></li>
                         </ul>
                         <ul class="ListLinks-module--list--4bf07e">
                             <li><a class="ListLinks-module--link--205474" href="" style="color: #ff6668;"
@@ -54,17 +54,17 @@
                         <div class="row cursor-image">
                             <div class="col-md-6">
                                 <div class="card image-card">
-                                    <img src="../../../../../assets/image/coiffure1.webp" class="card-img-top"
-                                        alt="...">
+                                    <img src="../../../../../assets/assets/img/categorie/{{responseSearchService[0].id_Categorie.image[0].name}}"
+                                        class="card-img-top" alt="...">
                                     <div class="card-body">
-                                        <p class="card-text">Le temps presse? Réservez une coupe</p>
+                                        <p class="card-text">Le temps presse? Réservez maintenant</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="card image-card">
-                                    <img src="../../../../../assets/image/coiffure2.webp" class="card-img-top"
-                                        alt="...">
+                                    <img src="../../../../../assets/assets/img/categorie/{{responseSearchService[0].id_Categorie.image[1].name}}"
+                                        class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <p class="card-text">Venez trouver des idées</p>
                                     </div>

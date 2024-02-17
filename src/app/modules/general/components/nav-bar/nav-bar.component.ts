@@ -45,6 +45,8 @@ export class NavBarComponent implements OnInit {
     this.categorieService.getAllCategorie().subscribe(
       (res: any) => {
         this.categories = res.categories;
+        console.log(this.categories, 'this.categories');
+
         this.spinner.hide();
       },
       (error: any) => {
@@ -61,6 +63,8 @@ export class NavBarComponent implements OnInit {
     this.responseSearchService = this.serviceSalon.filter(
       (category) => category.id_Categorie.name === name
     );
+
+    console.log(this.responseSearchService, 'this.responseSearchService');
 
     return this.responseSearchService;
   }
