@@ -22,7 +22,6 @@ export class TopServiceComponent implements OnInit {
     this.serviceSalonService.getTopServices().subscribe(
       (res: any) => {
         this.topServiceSalon = res;
-        console.log('this.serviceSalon', this.topServiceSalon);
       },
       (error: any) => {
         console.error(

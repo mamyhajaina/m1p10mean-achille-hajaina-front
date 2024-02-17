@@ -8,7 +8,7 @@ main {
   align-items: center;
   min-height: 100vh;
   font-family: "Jost", sans-serif;
-  background: linear-gradient(to bottom, #34b7a7, #302b63, #24243e);
+  background: linear-gradient(to bottom, #ff6668, #2e234e, #222036);
 }
 
 .main {
@@ -120,4 +120,59 @@ button:hover {
 button:disabled {
   cursor: not-allowed;
   background-color: #9c8ab1;
+}
+
+.welcome {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: Arial, sans-serif;
+  font-style: italic;
+  color: #ff6668;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+.eleven h1 {
+  font-size: 30px;
+  text-align: center;
+  line-height: 3em;
+  padding-bottom: 45px;
+  font-family: "Playfair Display", serif;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  color: darkslateblue;
+}
+
+.eleven h1:before {
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  width: 60%;
+  left: 50%;
+  margin-left: -30%;
+  height: 5px;
+  content: "";
+  background-color: #777;
+  z-index: 4;
+}
+.eleven h1:after {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 50%;
+  margin-left: -20px;
+  bottom: 0px;
+  content: "\00a7";
+  font-size: 60px;
+  line-height: 40px;
+  color: #f5f2f2;
+  font-weight: 400;
+  z-index: 5;
+  display: block;
 }

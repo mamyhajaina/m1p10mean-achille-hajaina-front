@@ -4,6 +4,6 @@ export class ServiceSalon {
   dure: number = 0;
   prix: number = 0;
   commision: number = 0;
-  id_Categorie: string = '';
+  id_Categorie: any;
   image: any[] = [];
 }

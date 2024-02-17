@@ -1,16 +1,79 @@
-<header id="header" class="header d-flex align-items-center header-css">
-    <div class="container d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
-            <h6>Salon de beauté .</h6>
-        </a>
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li><a href="public/home">Home</a></li>
-                <li><a href="public/about">About</a></li>
-                <li><a href="public/services">Services</a></li>
-                <li><a href="public/contact">Contact</a></li>
-            </ul>
-        </nav>
-        <app-button-notification-profil></app-button-notification-profil>
+<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+    <div class="container-fluid container">
+        <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                <img src="favicon.ico" height="50" alt="MDB Logo" loading="lazy" />
+            </a>
+            <span class="tittle">Charme & Éclat Beauté</span>
+        </div>
+        <div class="d-flex align-items-center">
+            <a class="text-reset me-3" href="#">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+            <app-button-notification-profil></app-button-notification-profil>
+        </div>
     </div>
-</header>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+    <div class="container-fluid container">
+        <div class="container host-listner">
+            <div class="Navigation-module--navTabs--60f176">
+                <div class="Navigation-module--navTabsWrapper--71a231">
+                    <a class="NavigationTab-module--link--88cdd6" *ngFor="let item of categories"
+                        (click)="toggleDiv50(true, item.name)" [class.active]="isActive(item.name)">{{
+                        item.name
+                        }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container-div host-listner" [ngClass]="{'overlay-dark': showDiv50}">
+    <div class="card text-center div50" *ngIf="showDiv50">
+        <div class="row with-padding">
+            <div class="col-md-2"> </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4">
+                        <ul class="ListLinks-module--list--4bf07e">
+                            <li *ngFor="let item of responseSearchService"><a class="ListLinks-module--link--205474"
+                                    href="" data-label="Coupe femme" data-index="0">{{item.name}}</a></li>
+                        </ul>
+                        <ul class="ListLinks-module--list--4bf07e">
+                            <li><a class="ListLinks-module--link--205474" href=""
+                                    data-label="Toutes les offres de nos coiffeurs" data-index="6">Toutes les offres de
+                                    nos coiffeurs</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row cursor-image">
+                            <div class="col-md-6">
+                                <div class="card image-card">
+                                    <img src="../../../../../assets/image/coiffure1.webp" class="card-img-top"
+                                        alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Le temps presse? Réservez une coupe</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card image-card">
+                                    <img src="../../../../../assets/image/coiffure2.webp" class="card-img-top"
+                                        alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Venez trouver des idées</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

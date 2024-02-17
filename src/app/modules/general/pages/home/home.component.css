@@ -116,3 +116,21 @@
 .cursor-image {
   cursor: pointer;
 }
+
+.btn-search {
+  background-color: #ff6668;
+  color: white;
+}
+
+.back-img {
+  background-image: url("../../../../../assets/image/screen.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 30vh;
+}
+
+.liste li {
+  margin-bottom: 10px;
+  list-style: none;
+}
