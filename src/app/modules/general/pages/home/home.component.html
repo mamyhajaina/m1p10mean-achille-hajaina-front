@@ -27,7 +27,8 @@
                   <br>
                   <input type="date" class="form-control px-3">
                   <br>
-                  <button type="button" class="btn btn-search px-3">Recherche</button>
+                  <button type="button" class="btn btn-search px-3"
+                    (click)="afficherPopupRendezVous()">Recherche</button>
                 </div>
               </div>
             </div>
@@ -154,3 +155,4 @@
   </div>
 </div>
 <br>
+<app-prise-rendez-vous [visible]="popup"></app-prise-rendez-vous>

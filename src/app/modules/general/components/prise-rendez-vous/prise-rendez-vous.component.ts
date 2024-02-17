@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-prise-rendez-vous',
@@ -7,6 +7,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class PriseRendezVousComponent implements OnInit {
+
+  @Input() visible: boolean = false;
+  date: Date[] | undefined;
 
   constructor() { }
 
