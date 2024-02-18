@@ -2,6 +2,8 @@
 
 .container-panier {
   margin-top: 2%;
+  max-height: 850px;
+  overflow-y: auto;
 }
 
 .input-icone {
@@ -35,4 +37,17 @@
 .custom-footer {
   background-color: #f3f3f2;
   height: 8%;
+}
+
+.Inline-module_inline__1aHBb {
+  display: flex;
+  align-items: center;
+}
+
+.MediaObject-module_mediaItem__1pFSb {
+  margin-right: 8px;
+}
+
+.AddServiceLink-module_link_c7bea2 {
+  color: #ff6668;
 }

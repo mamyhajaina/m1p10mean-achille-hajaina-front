@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceSalon } from '../../models/serviceSalon';
 import { ServiceSalonService } from '../../service/serviceSalon.service';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 interface PageEvent {
   first: number;
@@ -25,10 +27,18 @@ export class SousCategorieComponent implements OnInit {
   visible: boolean = false;
   detailsService: ServiceSalon = new ServiceSalon();
   popupPanier: boolean = false;
+  panier: ServiceSalon[] = [];
 
-  constructor(private productService: ServiceSalonService) {}
+  constructor(
+    private productService: ServiceSalonService,
+    private router: Router,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit() {
+    this.selectedProducts = [];
+    const panierString = sessionStorage.getItem('panier');
+    this.panier = panierString ? JSON.parse(panierString) : [];
     this.statuses = [
       { label: 'Visage', value: 'visage' },
       { label: 'Coiffure', value: 'coiffure' },
@@ -38,7 +48,9 @@ export class SousCategorieComponent implements OnInit {
       { label: 'Homme', value: 'homme' },
       { label: 'Massage', value: 'massage' },
     ];
-    this.selectedProducts = [];
+    for (let index = 0; index < this.panier.length; index++) {
+      this.selectedProducts.push(this.panier[index]);
+    }
     this.getAllServices();
   }
 
@@ -57,9 +69,29 @@ export class SousCategorieComponent implements OnInit {
   }
 
   onAddSelectService(product: ServiceSalon) {
-    const index = this.availableProducts.indexOf(product);
-    this.availableProducts.splice(index, 1);
-    this.selectedProducts.push(product);
+    const panierString = sessionStorage.getItem('panier');
+    this.panier = panierString ? JSON.parse(panierString) : [];
+    if (this.panier) {
+      const serviceExists = this.panier.find(
+        (item) => item._id === product._id
+      );
+      if (serviceExists) {
+        this.messageService.add({
+          key: 'tc',
+          severity: 'error',
+          summary: 'Error',
+          detail: `Le service est déjà sélectionné.`,
+        });
+      } else {
+        const index = this.availableProducts.indexOf(product);
+        this.availableProducts.splice(index, 1);
+        this.selectedProducts.push(product);
+      }
+    } else {
+      const index = this.availableProducts.indexOf(product);
+      this.availableProducts.splice(index, 1);
+      this.selectedProducts.push(product);
+    }
   }
 
   onPageChange(event: PageEvent) {
@@ -72,14 +104,41 @@ export class SousCategorieComponent implements OnInit {
   }
 
   drop() {
+    const panierString = sessionStorage.getItem('panier');
+    this.panier = panierString ? JSON.parse(panierString) : [];
     if (this.draggedProduct) {
-      let draggedProductIndex = this.findIndex(this.draggedProduct);
-      this.selectedProducts = [...this.selectedProducts, this.draggedProduct];
-      this.availableProducts = this.availableProducts.filter(
-        (val, i) => i != draggedProductIndex
-      );
+      if (this.panier) {
+        const serviceExists = this.panier.find(
+          (item) => item._id === this.draggedProduct._id
+        );
+        if (serviceExists) {
+          this.messageService.add({
+            key: 'tc',
+            severity: 'error',
+            summary: 'Error',
+            detail: `Le service est déjà sélectionné.`,
+          });
+        } else {
+          let draggedProductIndex = this.findIndex(this.draggedProduct);
+          this.selectedProducts = [
+            ...this.selectedProducts,
+            this.draggedProduct,
+          ];
+          this.availableProducts = this.availableProducts.filter(
+            (val, i) => i != draggedProductIndex
+          );
 
-      this.draggedProduct = null;
+          this.draggedProduct = null;
+        }
+      } else {
+        let draggedProductIndex = this.findIndex(this.draggedProduct);
+        this.selectedProducts = [...this.selectedProducts, this.draggedProduct];
+        this.availableProducts = this.availableProducts.filter(
+          (val, i) => i != draggedProductIndex
+        );
+
+        this.draggedProduct = null;
+      }
     }
   }
 
@@ -100,10 +159,12 @@ export class SousCategorieComponent implements OnInit {
   }
 
   onRemoveProduct(product: ServiceSalon) {
+    sessionStorage.removeItem('panier');
     const index = this.selectedProducts.indexOf(product);
     if (index !== -1) {
       this.selectedProducts.splice(index, 1);
       this.availableProducts.push(product);
+      sessionStorage.setItem('panier', JSON.stringify(this.selectedProducts));
     }
   }
 
@@ -138,5 +199,10 @@ export class SousCategorieComponent implements OnInit {
   showDialog(product: ServiceSalon) {
     this.detailsService = product;
     this.visible = true;
+  }
+
+  saveInPanier() {
+    sessionStorage.setItem('panier', JSON.stringify(this.selectedProducts));
+    this.router.navigate(['/public/panier']);
   }
 }

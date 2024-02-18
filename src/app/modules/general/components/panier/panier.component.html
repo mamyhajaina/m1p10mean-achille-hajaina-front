@@ -8,24 +8,24 @@
             <span [style.color]="'darkslateblue'"><b>Mon panier</b></span>
           </div>
           <hr class="hr" />
-          <div class="card-header">
+          <div class="card-header" *ngFor="let item of panier">
             <br>
             <div class="row">
               <h5>
-                Shampoing, coupe et brushing
+                {{item.id_Categorie.name}}
               </h5>
               <br>
               <br>
               <h6 for="">
-                Cheveux courts
+                {{item.name}}
               </h6>
               <br>
               <h6 for="">
-                40 minutes
+                {{item.dure}} minutes
               </h6>
               <br>
               <h6 for="">
-                20 000 Ar
+                {{item.prix}} Ar
               </h6>
             </div>
             <br><br>
@@ -37,43 +37,26 @@
                 </select>
                 <i class="bi bi-person fa-lg fa-fw" aria-hidden="true"></i>
               </div>
-
             </div>
-          </div>
-          <hr class="hr" />
-          <div class="card-header">
             <br>
-            <div class="row">
-              <h5>
-                Coloration Inoa, shampoing et brushing
-              </h5>
-              <br>
-              <br>
-              <h6 for="">
-                Cheveux mi-longs
-              </h6>
-              <br>
-              <h6 for="">
-                55 minutes
-              </h6>
-              <br>
-              <h6 for="">
-                32 000 Ar
-              </h6>
-            </div>
-            <br><br>
-            <div class="row">
-              <div class="input-icone">
-                <select class="form-select form-select-lg" aria-label=".form-select-lg example">
-                  <option selected>Un(e) employé(e)</option>
-                  <option value="1">Nampiana</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-                <i class="bi bi-person fa-lg fa-fw" aria-hidden="true"></i>
+            <hr class="hr" />
+          </div>
+          <div
+            class="Stack-module_stack__19jn1 Stack-module_xxl__3s_VC Inline-module_alignNormal__23EVb Inline-module_justifyStart__2svO3">
+            <a href="/public/salon" class="AddServiceLink-module_link_c7bea2" data-cy="AddServiceLink">
+              <div tabindex="0"
+                class="Inline-module_inline__1aHBb Inline-module_sm__19DiN Inline-module_alignCenter__uIC18 Inline-module_justifyStart__2svO3">
+                <div class="MediaObject-module_mediaItem__1pFSb">
+                  <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                    preserveAspectRatio="xMidYMid meet" fill="currentColor">
+                    <path
+                      d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1zm0 2a9 9 0 10.001 18.001A9 9 0 0012 3zm1 4v4h4v2h-4v4h-2v-4H7v-2h4V7h2z"
+                      fill-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <span class="Text-module_body__2lxF8">Ajouter un autre service de Optimiste Paris</span>
               </div>
-
-            </div>
+            </a>
           </div>
         </div>
         <div class="col-md-6">

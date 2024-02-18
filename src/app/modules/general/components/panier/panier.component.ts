@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeService } from '../../service/employe.service';
 import { Employe } from '../../models/employe';
+import { ServiceSalon } from '../../models/serviceSalon';
 
 @Component({
   selector: 'app-panier',
@@ -10,10 +11,13 @@ import { Employe } from '../../models/employe';
 export class PanierComponent implements OnInit {
   date: Date = new Date();
   employes: Employe[] = [];
+  panier: ServiceSalon[] = [];
 
   constructor(private employeService: EmployeService) {}
 
   ngOnInit() {
+    const panierString = sessionStorage.getItem('panier');
+    this.panier = panierString ? JSON.parse(panierString) : [];
     this.getAllEmploye();
   }
 
