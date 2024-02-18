@@ -1,3 +1,106 @@
-<p>
-  panier works!
-</p>
+<div class="container container-panier">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div class="row panier-row">
+        <div class="col-md-6">
+          <div class="card-header">
+            <span [style.color]="'darkslateblue'"><b>Mon panier</b></span>
+          </div>
+          <hr class="hr" />
+          <div class="card-header">
+            <br>
+            <div class="row">
+              <h5>
+                Shampoing, coupe et brushing
+              </h5>
+              <br>
+              <br>
+              <h6 for="">
+                Cheveux courts
+              </h6>
+              <br>
+              <h6 for="">
+                40 minutes
+              </h6>
+              <br>
+              <h6 for="">
+                20 000 Ar
+              </h6>
+            </div>
+            <br><br>
+            <div class="row">
+              <div class="input-icone">
+                <select class="form-select form-select-lg" aria-label=".form-select-lg example">
+                  <option selected>Un(e) employé(e)</option>
+                  <option *ngFor="let item of employes" value="{{item._id}}">{{item.username}}</option>
+                </select>
+                <i class="bi bi-person fa-lg fa-fw" aria-hidden="true"></i>
+              </div>
+
+            </div>
+          </div>
+          <hr class="hr" />
+          <div class="card-header">
+            <br>
+            <div class="row">
+              <h5>
+                Coloration Inoa, shampoing et brushing
+              </h5>
+              <br>
+              <br>
+              <h6 for="">
+                Cheveux mi-longs
+              </h6>
+              <br>
+              <h6 for="">
+                55 minutes
+              </h6>
+              <br>
+              <h6 for="">
+                32 000 Ar
+              </h6>
+            </div>
+            <br><br>
+            <div class="row">
+              <div class="input-icone">
+                <select class="form-select form-select-lg" aria-label=".form-select-lg example">
+                  <option selected>Un(e) employé(e)</option>
+                  <option value="1">Nampiana</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+                <i class="bi bi-person fa-lg fa-fw" aria-hidden="true"></i>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card-header text-center">
+            <span [style.color]="'darkslateblue'"><b>Sélectionnez l'heure de début de votre rendez-vous</b></span>
+          </div>
+          <div class="header text-center">
+            <br>
+            <p-calendar [(ngModel)]="date" [inline]="true" [showTime]="true" [showWeek]="true"></p-calendar>
+            <br>
+            <br>
+            <button type="button" style="width: 80%;" class="btn btn-secondary-perso btn-lg">Vérifier</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+<footer id="footer" class="footer fixed-bottom custom-footer">
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright <strong><span>ANDRIANTSITOHAINA Lahatra Mamy Hajaina</span></strong> and
+      <strong><span>FANOMEZANTSOA Achille Aubin</span></strong>
+    </div>
+    <div class="credits" style="color: #ff6668;">
+      CHARME & ÉCLAT BEAUTÉ
+    </div>
+  </div>
+</footer>

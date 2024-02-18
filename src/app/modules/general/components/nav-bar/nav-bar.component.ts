@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ServiceSalonService } from '../../service/serviceSalon.service';
 import { ServiceSalon } from '../../models/serviceSalon';
 import { io, Socket } from 'socket.io-client';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -17,12 +18,16 @@ export class NavBarComponent implements OnInit {
   responseSearchService: ServiceSalon[] = [];
   activeItem: string | null = null;
   socket!: Socket;
+  currentUrl: string;
 
   constructor(
     private serviceSalonService: ServiceSalonService,
     private categorieService: CategorieService,
-    private spinner: NgxSpinnerService
-  ) {}
+    private spinner: NgxSpinnerService,
+    private router: Router
+  ) {
+    this.currentUrl = this.router.url;
+  }
 
   ngOnInit() {
     this.getAllCategories();

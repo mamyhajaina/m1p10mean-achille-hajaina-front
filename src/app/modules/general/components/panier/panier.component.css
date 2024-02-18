@@ -1,0 +1,38 @@
+@import "../../assets/assetsHome/css/style.css";
+
+.container-panier {
+  margin-top: 2%;
+}
+
+.input-icone {
+  position: relative;
+}
+.input-icone i {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  padding: 9px 8px;
+  color: darkslateblue;
+  font-size: 25px;
+  margin-top: -2%;
+  margin-left: 2%;
+}
+
+.form-select-lg {
+  padding-left: 3rem;
+  color: darkslateblue;
+}
+
+.panier-row {
+  background-color: rgb(245, 244, 244);
+  padding: 20px;
+}
+
+.btn-secondary-perso {
+  background-color: rgb(198, 195, 195);
+}
+
+.custom-footer {
+  background-color: #f3f3f2;
+  height: 8%;
+}

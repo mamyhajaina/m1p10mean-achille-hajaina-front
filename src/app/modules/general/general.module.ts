@@ -45,6 +45,7 @@ import { TableModule } from 'primeng/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { PaginatorModule } from 'primeng/paginator';
+import { PanierComponent } from './components/panier/panier.component';
 
 @NgModule({
   imports: [
@@ -97,6 +98,7 @@ import { PaginatorModule } from 'primeng/paginator';
     SousCategorieComponent,
     TopServiceComponent,
     ServicesComponent,
+    PanierComponent,
   ],
   exports: [
     FooterAdminComponent,
