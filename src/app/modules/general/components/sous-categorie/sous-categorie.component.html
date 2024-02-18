@@ -71,7 +71,8 @@
                             <p-tag [style.cursor]="'pointer'" value="Sélectionner" severity="danger"
                                 (click)="onAddSelectService(product)"></p-tag>
                         </td>
-                        <td><p-tag [style.cursor]="'pointer'" severity="info"><i class="pi pi-eye"></i></p-tag></td>
+                        <td><p-tag (click)="showDialog(product)" [style.cursor]="'pointer'" severity="info"><i
+                                    class="pi pi-eye"></i></p-tag></td>
                     </tr>
                 </ng-template>
             </p-table>
@@ -97,8 +98,50 @@
                     </tr>
                 </ng-template>
             </p-table>
+            <br>
+            <button *ngIf="selectedProducts.length" type="button" class="btn-sm btn btn-outline-danger"
+                style="width: 50%; margin-left: 25%;">Choisir l'horaire</button>
         </div>
         <div class="col-md-1"></div>
     </div>
 </div>
 <br>
+<p-dialog header="Header" [(visible)]="visible" [style]="{ width: '40vw', height: '40vw' }" [modal]="true"
+    [dismissableMask]="true">
+    <ng-template pTemplate="header" class="card">
+        <h6 class="tittle-modal"><b>Détails de la prestation</b></h6>
+    </ng-template>
+    <p-divider></p-divider>
+    <ng-template pTemplate="body">
+        <div class="row text-center">
+            <h2 class="tittle"><b>{{detailsService.name}}</b></h2>
+            <span><b>A partir de {{detailsService.prix | currency:
+                    'USD'}}</b></span>
+        </div>
+        <br>
+        <div class="row text-center">
+            <div class="flex justify-content-center">
+                <p-image src="../../../../../assets/assets/img/service/{{detailsService.image[0].name}}" alt="Image"
+                    width="250" [preview]="true"></p-image>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="tittle-modal">A propos de cette prestation</h5>
+                <span>{{detailsService.description}}</span>
+            </div>
+            <div class="col-md-6">
+                <h5 class="tittle-modal">Ce service inclut :</h5>
+                <li>{{detailsService.description}}</li>
+                <li>{{detailsService.description}}</li>
+                <li>{{detailsService.description}}</li>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="visible = false" label="Sélectionner un service"
+            (click)="onAddSelectService(detailsService)" styleClass="p-button-text p-button-danger"></p-button>
+    </ng-template>
+</p-dialog>

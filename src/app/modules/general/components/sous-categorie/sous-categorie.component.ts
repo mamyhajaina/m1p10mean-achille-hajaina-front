@@ -22,6 +22,9 @@ export class SousCategorieComponent implements OnInit {
   first: number = 0;
   rows: number = 10;
   statuses!: any[];
+  visible: boolean = false;
+  detailsService: ServiceSalon = new ServiceSalon();
+  popupPanier: boolean = false;
 
   constructor(private productService: ServiceSalonService) {}
 
@@ -130,5 +133,10 @@ export class SousCategorieComponent implements OnInit {
       default:
         return '';
     }
+  }
+
+  showDialog(product: ServiceSalon) {
+    this.detailsService = product;
+    this.visible = true;
   }
 }
