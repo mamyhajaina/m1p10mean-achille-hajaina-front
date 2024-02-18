@@ -13,12 +13,11 @@ export class HomeComponent implements OnInit {
   categories: Categorie[] = [];
   categorie: Categorie = new Categorie();
   socket!: Socket;
-  popup: boolean = false;
 
   constructor(
     private categorieService: CategorieService,
     private spinner: NgxSpinnerService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.spinner.show();
@@ -68,9 +67,5 @@ export class HomeComponent implements OnInit {
 
   toggleDiv50(data: boolean) {
     this.showDiv50 = data;
-  }
-
-  afficherPopupRendezVous() {
-    this.popup = !this.popup;
   }
 }

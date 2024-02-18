@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductService } from '../../service/product.service';
+import { ServiceSalon } from '../../models/serviceSalon';
+import { ServiceSalonService } from '../../service/serviceSalon.service';
 
 @Component({
   selector: 'app-sous-categorie',
@@ -8,21 +10,39 @@ import { ProductService } from '../../service/product.service';
   styleUrls: ['./sous-categorie.component.scss'],
 })
 export class SousCategorieComponent implements OnInit {
-  availableProducts: Product[] = [];
-  selectedProducts: Product[] = [];
+  availableProducts: ServiceSalon[] = [];
+  selectedProducts: ServiceSalon[] = [];
   draggedProduct!: any;
   value = 5;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ServiceSalonService) {}
 
   ngOnInit() {
     this.selectedProducts = [];
-    this.productService
-      .getProductsSmall()
-      .then((products) => (this.availableProducts = products));
+    // this.productService
+    //   .getProductsSmall()
+    //   .then((products) => (this.availableProducts = products));
+    this.getAllServices();
   }
 
-  dragStart(product: Product) {
+  getAllServices() {
+    this.productService.getTopServices().subscribe(
+      (res: any) => {
+        this.availableProducts = res;
+        console.log(this.availableProducts, 'hahaha');
+      },
+      (error: any) => {
+        console.error(
+          "Une erreur s'est produite lors de la récupération des catégories : ",
+          error
+        );
+      }
+    );
+  }
+
+  dragStart(product: ServiceSalon) {
+    console.log(product, 'mandeha');
+
     this.draggedProduct = product;
   }
 
@@ -41,10 +61,10 @@ export class SousCategorieComponent implements OnInit {
     this.draggedProduct = null;
   }
 
-  findIndex(product: Product) {
+  findIndex(product: ServiceSalon) {
     let index = -1;
     for (let i = 0; i < this.availableProducts.length; i++) {
-      if (product.id === this.availableProducts[i].id) {
+      if (product._id === this.availableProducts[i]._id) {
         index = i;
         break;
       }
@@ -52,20 +72,7 @@ export class SousCategorieComponent implements OnInit {
     return index;
   }
 
-  getSeverity(status: string) {
-    switch (status) {
-      case 'INSTOCK':
-        return 'success';
-      case 'LOWSTOCK':
-        return 'warning';
-      case 'OUTOFSTOCK':
-        return 'danger';
-      default:
-        return '';
-    }
-  }
-
-  onRemoveProduct(product: Product) {
+  onRemoveProduct(product: ServiceSalon) {
     const index = this.selectedProducts.indexOf(product);
     if (index !== -1) {
       this.selectedProducts.splice(index, 1);
