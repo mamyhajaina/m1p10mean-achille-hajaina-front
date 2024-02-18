@@ -44,6 +44,7 @@ import { TagModule } from 'primeng/tag';
 import { TableModule } from 'primeng/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   imports: [
@@ -76,6 +77,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     TableModule,
     MatCardModule,
     MatDatepickerModule,
+    PaginatorModule,
   ],
   declarations: [
     GeneralComponent,

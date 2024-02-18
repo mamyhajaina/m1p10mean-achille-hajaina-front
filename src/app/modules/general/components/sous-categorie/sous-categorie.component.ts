@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../models/product';
-import { ProductService } from '../../service/product.service';
 import { ServiceSalon } from '../../models/serviceSalon';
 import { ServiceSalonService } from '../../service/serviceSalon.service';
+
+interface PageEvent {
+  first: number;
+  rows: number;
+  page: number;
+  pageCount: number;
+}
 
 @Component({
   selector: 'app-sous-categorie',
@@ -14,14 +19,23 @@ export class SousCategorieComponent implements OnInit {
   selectedProducts: ServiceSalon[] = [];
   draggedProduct!: any;
   value = 5;
+  first: number = 0;
+  rows: number = 10;
+  statuses!: any[];
 
   constructor(private productService: ServiceSalonService) {}
 
   ngOnInit() {
+    this.statuses = [
+      { label: 'Visage', value: 'visage' },
+      { label: 'Coiffure', value: 'coiffure' },
+      { label: 'Main & pieds', value: 'Main & pieds' },
+      { label: 'Epilation', value: 'epilation' },
+      { label: 'Corps', value: 'corps' },
+      { label: 'Homme', value: 'homme' },
+      { label: 'Massage', value: 'massage' },
+    ];
     this.selectedProducts = [];
-    // this.productService
-    //   .getProductsSmall()
-    //   .then((products) => (this.availableProducts = products));
     this.getAllServices();
   }
 
@@ -29,7 +43,6 @@ export class SousCategorieComponent implements OnInit {
     this.productService.getTopServices().subscribe(
       (res: any) => {
         this.availableProducts = res;
-        console.log(this.availableProducts, 'hahaha');
       },
       (error: any) => {
         console.error(
@@ -40,9 +53,18 @@ export class SousCategorieComponent implements OnInit {
     );
   }
 
-  dragStart(product: ServiceSalon) {
-    console.log(product, 'mandeha');
+  onAddSelectService(product: ServiceSalon) {
+    const index = this.availableProducts.indexOf(product);
+    this.availableProducts.splice(index, 1);
+    this.selectedProducts.push(product);
+  }
 
+  onPageChange(event: PageEvent) {
+    this.first = event.first;
+    this.rows = event.rows;
+  }
+
+  dragStart(product: ServiceSalon) {
     this.draggedProduct = product;
   }
 
@@ -50,9 +72,10 @@ export class SousCategorieComponent implements OnInit {
     if (this.draggedProduct) {
       let draggedProductIndex = this.findIndex(this.draggedProduct);
       this.selectedProducts = [...this.selectedProducts, this.draggedProduct];
-      // this.availableProducts = this.availableProducts.filter(
-      //   (val, i) => i != draggedProductIndex
-      // );
+      this.availableProducts = this.availableProducts.filter(
+        (val, i) => i != draggedProductIndex
+      );
+
       this.draggedProduct = null;
     }
   }
@@ -69,6 +92,7 @@ export class SousCategorieComponent implements OnInit {
         break;
       }
     }
+
     return index;
   }
 
@@ -76,6 +100,35 @@ export class SousCategorieComponent implements OnInit {
     const index = this.selectedProducts.indexOf(product);
     if (index !== -1) {
       this.selectedProducts.splice(index, 1);
+      this.availableProducts.push(product);
+    }
+  }
+
+  getSeverity(status: string) {
+    switch (status) {
+      case 'Coiffure':
+        return 'success';
+
+      case 'Massage':
+        return 'danger';
+
+      case 'Main et pieds':
+        return 'info';
+
+      case 'Corps':
+        return 'warning';
+
+      case 'Visage':
+        return 'primary';
+
+      case 'Homme':
+        return 'warning';
+
+      case 'Epilation':
+        return 'primary';
+
+      default:
+        return '';
     }
   }
 }

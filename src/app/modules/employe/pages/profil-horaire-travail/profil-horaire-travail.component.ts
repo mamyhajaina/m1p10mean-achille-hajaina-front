@@ -8,10 +8,9 @@ import { HoraireTravail } from '../../models/HoraireTravail';
 @Component({
   selector: 'app-profil-horaire-travail',
   templateUrl: './profil-horaire-travail.component.html',
-  styleUrls: ['./profil-horaire-travail.component.css']
+  styleUrls: ['./profil-horaire-travail.component.css'],
 })
 export class ProfilHoraireTravailComponent implements OnInit {
-
   profile: User = new User();
   solde: any;
   idUser: any;
@@ -19,7 +18,7 @@ export class ProfilHoraireTravailComponent implements OnInit {
 
   constructor(
     private profilHoraireTravailService: ProfileHoraireTravailService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.idUser = localStorage.getItem('id');
@@ -45,8 +44,6 @@ export class ProfilHoraireTravailComponent implements OnInit {
     this.profilHoraireTravailService.getSolde(this.profile.idUser).subscribe(
       (res: any) => {
         this.profile.solde = res;
-        console.log('profile', this.profile);
-
       },
       (error: any) => {
         console.error(
@@ -56,7 +53,4 @@ export class ProfilHoraireTravailComponent implements OnInit {
       }
     );
   }
-
-
-
 }

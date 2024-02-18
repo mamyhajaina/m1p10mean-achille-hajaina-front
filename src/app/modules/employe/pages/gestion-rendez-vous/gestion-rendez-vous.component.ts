@@ -25,14 +25,9 @@ export class GestionRendezVousComponent implements OnInit {
   }
 
   getRendezVous() {
-    console.log(this.token, 'token');
-    console.log(this.idUser, 'this.idUser');
-
     this.rendezVousService.getRendezVous(this.idUser, this.token).subscribe(
       (res: any) => {
-        console.log('res', res);
         this.rendezVous = res;
-        console.log('rendezVous', this.rendezVous);
       },
       (error: any) => {
         console.error(
@@ -46,8 +41,6 @@ export class GestionRendezVousComponent implements OnInit {
   getRendezVousByIdEmploye() {
     this.rendezVousService
       .getRendezVousByIdEmploye(this.idUser, this.token)
-      .subscribe((res: any) => {
-        console.log(res, 'res employe');
-      });
+      .subscribe((res: any) => {});
   }
 }
