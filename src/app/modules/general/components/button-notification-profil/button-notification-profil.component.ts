@@ -21,8 +21,6 @@ export class ButtonNotificationProfilComponent implements OnInit {
     this.dataUserConnected.id = localStorage.getItem('id');
     this.dataUserConnected.role = localStorage.getItem('role');
     this.dataUserConnected.email = localStorage.getItem('email');
-    this.dataUserConnected.image = localStorage.getItem('image');
-    console.log(this.dataUserConnected);
   }
 
   toggleNotifications(): void {

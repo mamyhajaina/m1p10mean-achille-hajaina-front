@@ -1,6 +1,6 @@
 <br>
 <div class="container container-head">
-    <h3><b> Optimiste Paris</b></h3>
+    <h3><b> Toutes nos prestations</b></h3>
     <button type="button" class="btn-sm btn btn-outline-info">Prendre rendez-vous</button>
     <button type="button" class="btn-sm btn btn-outline-secondary">Avis</button>
     <button type="button" class="btn-sm btn btn-outline-secondary">A propos</button>
@@ -13,52 +13,135 @@
     <span class="avis-text">7 avis </span>
 </div>
 <br>
-<div class="container">
+<div class="">
     <div class="row">
-        <div class="card col-md-6">
-            <div *ngFor="let product of availableProducts">
-                <div class="product-item" pDraggable="products" (onDragStart)="dragStart(product)"
-                    (onDragEnd)="dragEnd()">
-                    <div class="image-container">
-                        <img src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}"
-                            [alt]="product.name" class="product-image" />
-                    </div>
-                    <div class="product-list-detail">
-                        <h5 class="mb-2">{{product.name}}</h5>
-                        <i class="pi pi-tag product-category-icon"></i>
-                        <span class="product-category">{{product.category}}</span>
-                    </div>
-                    <div class="product-list-action">
-                        <h6 class="mb-2">{{product.price}}</h6>
-                        <p-tag [value]="product.inventoryStatus"
-                            [severity]="getSeverity(product.inventoryStatus)"></p-tag>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="col-md-1"></div>
-        <div class="card col-md-5" pDroppable="products" (onDrop)="drop()">
+        <div class="card col-md-7">
+            <p-table [value]="availableProducts" [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5"
+                [showCurrentPageReport]="true" [rowsPerPageOptions]="[5, 25, 50]"
+                [globalFilterFields]="['name', 'prix', 'id_Categorie.name', 'status']">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Image</th>
+                        <th pSortableColumn="name" style="width: 20%;">Service <p-sortIcon field="name"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="prix" style="width: 15%;">Prix <p-sortIcon field="prix"></p-sortIcon></th>
+                        <th pSortableColumn="name" style="width: 20%;">Categorie <p-sortIcon field="name"></p-sortIcon>
+                        </th>
+                        <th>Reviews</th>
+                        <th>Action</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th><p-columnFilter type="text" matchMode="contains" field="name" placeholder="service"
+                                [showMenu]="false"></p-columnFilter></th>
+                        <th><p-columnFilter type="text" matchMode="contains" field="prix" placeholder="prix"
+                                [showMenu]="false"></p-columnFilter></th>
+                        <th><p-columnFilter type="text" matchMode="contains" field="id_Categorie.name"
+                                [showMenu]="false">
+                                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                    <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)"
+                                        placeholder="categorie" [showClear]="true">
+                                        <ng-template let-option pTemplate="item">
+                                            {{option.value}}
+                                        </ng-template>
+                                    </p-dropdown>
+                                </ng-template>
+                            </p-columnFilter></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr pDraggable="services" (onDragStart)="dragStart(product)" (onDragEnd)="dragEnd()">
+                        <td><img src="../../../../../assets/assets/img/service/{{product.image[0].name}}"
+                                [alt]="product.name" width="100" class="shadow-4" /></td>
+                        <td style="width: 20%;">{{product.name}}</td>
+                        <td>
+                            {{product.prix | currency:'USD'}}</td>
+                        <td>
+                            <p-tag value="{{product.id_Categorie.name}}"
+                                [severity]="getSeverity(product.id_Categorie.name)">
+                            </p-tag>
+                        </td>
+                        <td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+                        <td>
+                            <p-tag [style.cursor]="'pointer'" value="Sélectionner" severity="danger"
+                                (click)="onAddSelectService(product)"></p-tag>
+                        </td>
+                        <td><p-tag (click)="showDialog(product)" [style.cursor]="'pointer'" severity="info"><i
+                                    class="pi pi-eye"></i></p-tag></td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <div class="card col-md-3 left-marge" pDroppable="services" (onDrop)="drop()">
             <p-table [value]="selectedProducts">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>ID</th>
                         <th>Categorie</th>
-                        <th>Nom</th>
+                        <th>Service</th>
                         <th>Prix</th>
+                        <th>Durée</th>
                         <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
                     <tr>
-                        <td>{{product.id}}</td>
-                        <td>{{product.category}}</td>
+                        <td>{{product.id_Categorie.name}}</td>
                         <td>{{product.name}}</td>
-                        <td>{{product.price}}</td>
+                        <td>{{product.prix}}</td>
+                        <td>{{product.dure}}</td>
                         <td><span class="pi pi-trash delete-icon" (click)="onRemoveProduct(product)"></span></td>
                     </tr>
                 </ng-template>
             </p-table>
+            <br>
+            <button *ngIf="selectedProducts.length" type="button" class="btn-sm btn btn-outline-danger"
+                style="width: 50%; margin-left: 25%;">Choisir l'horaire</button>
         </div>
+        <div class="col-md-1"></div>
     </div>
 </div>
 <br>
+<p-dialog header="Header" [(visible)]="visible" [style]="{ width: '40vw', height: '40vw' }" [modal]="true"
+    [dismissableMask]="true">
+    <ng-template pTemplate="header" class="card">
+        <h6 class="tittle-modal"><b>Détails de la prestation</b></h6>
+    </ng-template>
+    <p-divider></p-divider>
+    <ng-template pTemplate="body">
+        <div class="row text-center">
+            <h2 class="tittle"><b>{{detailsService.name}}</b></h2>
+            <span><b>A partir de {{detailsService.prix | currency:
+                    'USD'}}</b></span>
+        </div>
+        <br>
+        <div class="row text-center">
+            <div class="flex justify-content-center">
+                <p-image src="../../../../../assets/assets/img/service/{{detailsService.image[0].name}}" alt="Image"
+                    width="250" [preview]="true"></p-image>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="tittle-modal">A propos de cette prestation</h5>
+                <span>{{detailsService.description}}</span>
+            </div>
+            <div class="col-md-6">
+                <h5 class="tittle-modal">Ce service inclut :</h5>
+                <li>{{detailsService.description}}</li>
+                <li>{{detailsService.description}}</li>
+                <li>{{detailsService.description}}</li>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="visible = false" label="Sélectionner un service"
+            (click)="onAddSelectService(detailsService)" styleClass="p-button-text p-button-danger"></p-button>
+    </ng-template>
+</p-dialog>

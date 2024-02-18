@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../models/product';
-import { ProductService } from '../../service/product.service';
+import { ServiceSalon } from '../../models/serviceSalon';
+import { ServiceSalonService } from '../../service/serviceSalon.service';
+
+interface PageEvent {
+  first: number;
+  rows: number;
+  page: number;
+  pageCount: number;
+}
 
 @Component({
   selector: 'app-sous-categorie',
@@ -8,21 +15,59 @@ import { ProductService } from '../../service/product.service';
   styleUrls: ['./sous-categorie.component.scss'],
 })
 export class SousCategorieComponent implements OnInit {
-  availableProducts: Product[] = [];
-  selectedProducts: Product[] = [];
+  availableProducts: ServiceSalon[] = [];
+  selectedProducts: ServiceSalon[] = [];
   draggedProduct!: any;
   value = 5;
+  first: number = 0;
+  rows: number = 10;
+  statuses!: any[];
+  visible: boolean = false;
+  detailsService: ServiceSalon = new ServiceSalon();
+  popupPanier: boolean = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ServiceSalonService) {}
 
   ngOnInit() {
+    this.statuses = [
+      { label: 'Visage', value: 'visage' },
+      { label: 'Coiffure', value: 'coiffure' },
+      { label: 'Main & pieds', value: 'Main & pieds' },
+      { label: 'Epilation', value: 'epilation' },
+      { label: 'Corps', value: 'corps' },
+      { label: 'Homme', value: 'homme' },
+      { label: 'Massage', value: 'massage' },
+    ];
     this.selectedProducts = [];
-    this.productService
-      .getProductsSmall()
-      .then((products) => (this.availableProducts = products));
+    this.getAllServices();
   }
 
-  dragStart(product: Product) {
+  getAllServices() {
+    this.productService.getTopServices().subscribe(
+      (res: any) => {
+        this.availableProducts = res;
+      },
+      (error: any) => {
+        console.error(
+          "Une erreur s'est produite lors de la récupération des catégories : ",
+          error
+        );
+      }
+    );
+  }
+
+  onAddSelectService(product: ServiceSalon) {
+    const index = this.availableProducts.indexOf(product);
+    this.availableProducts.splice(index, 1);
+    this.selectedProducts.push(product);
+  }
+
+  onPageChange(event: PageEvent) {
+    this.first = event.first;
+    this.rows = event.rows;
+  }
+
+  dragStart(product: ServiceSalon) {
     this.draggedProduct = product;
   }
 
@@ -30,9 +75,10 @@ export class SousCategorieComponent implements OnInit {
     if (this.draggedProduct) {
       let draggedProductIndex = this.findIndex(this.draggedProduct);
       this.selectedProducts = [...this.selectedProducts, this.draggedProduct];
-      // this.availableProducts = this.availableProducts.filter(
-      //   (val, i) => i != draggedProductIndex
-      // );
+      this.availableProducts = this.availableProducts.filter(
+        (val, i) => i != draggedProductIndex
+      );
+
       this.draggedProduct = null;
     }
   }
@@ -41,34 +87,56 @@ export class SousCategorieComponent implements OnInit {
     this.draggedProduct = null;
   }
 
-  findIndex(product: Product) {
+  findIndex(product: ServiceSalon) {
     let index = -1;
     for (let i = 0; i < this.availableProducts.length; i++) {
-      if (product.id === this.availableProducts[i].id) {
+      if (product._id === this.availableProducts[i]._id) {
         index = i;
         break;
       }
     }
+
     return index;
+  }
+
+  onRemoveProduct(product: ServiceSalon) {
+    const index = this.selectedProducts.indexOf(product);
+    if (index !== -1) {
+      this.selectedProducts.splice(index, 1);
+      this.availableProducts.push(product);
+    }
   }
 
   getSeverity(status: string) {
     switch (status) {
-      case 'INSTOCK':
+      case 'Coiffure':
         return 'success';
-      case 'LOWSTOCK':
-        return 'warning';
-      case 'OUTOFSTOCK':
+
+      case 'Massage':
         return 'danger';
+
+      case 'Main et pieds':
+        return 'info';
+
+      case 'Corps':
+        return 'warning';
+
+      case 'Visage':
+        return 'primary';
+
+      case 'Homme':
+        return 'warning';
+
+      case 'Epilation':
+        return 'primary';
+
       default:
         return '';
     }
   }
 
-  onRemoveProduct(product: Product) {
-    const index = this.selectedProducts.indexOf(product);
-    if (index !== -1) {
-      this.selectedProducts.splice(index, 1);
-    }
+  showDialog(product: ServiceSalon) {
+    this.detailsService = product;
+    this.visible = true;
   }
 }

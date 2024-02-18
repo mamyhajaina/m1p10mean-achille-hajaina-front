@@ -6,29 +6,21 @@ import { Menu } from '../../models/menu';
 @Component({
   selector: 'app-menu-Admin',
   templateUrl: './menu-Admin.component.html',
-  styleUrls: ['./menu-Admin.component.css']
+  styleUrls: ['./menu-Admin.component.css'],
 })
 export class MenuAdminComponent implements OnInit {
-
   @Input() typeMenu?: string = '';
   menu: MenuItem[] = [];
   isMenuOpen = false;
 
-  constructor(
-    private router: Router
-  ) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    console.log('isMenuOpen', this.isMenuOpen, 'typeMenu', this.typeMenu);
-
     if (this.typeMenu == 'client') {
       this.menu = Menu.menuClient;
-      console.log("menu: " + this.menu);
-    }
-    else if (this.typeMenu == 'employe') {
+    } else if (this.typeMenu == 'employe') {
       this.menu = Menu.menuEmploye;
-    }
-    else if (this.typeMenu == 'manager') {
+    } else if (this.typeMenu == 'manager') {
       this.menu = Menu.menuManager;
     }
   }
@@ -40,5 +32,4 @@ export class MenuAdminComponent implements OnInit {
   nafigate(route: any) {
     this.router.navigate([route]);
   }
-
 }

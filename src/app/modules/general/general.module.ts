@@ -42,6 +42,9 @@ import { GalleriaModule } from 'primeng/galleria';
 import { DragDropModule } from 'primeng/dragdrop';
 import { TagModule } from 'primeng/tag';
 import { TableModule } from 'primeng/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   imports: [
@@ -72,6 +75,9 @@ import { TableModule } from 'primeng/table';
     DragDropModule,
     TagModule,
     TableModule,
+    MatCardModule,
+    MatDatepickerModule,
+    PaginatorModule,
   ],
   declarations: [
     GeneralComponent,

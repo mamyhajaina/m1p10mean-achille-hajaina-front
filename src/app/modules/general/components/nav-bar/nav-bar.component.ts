@@ -45,7 +45,6 @@ export class NavBarComponent implements OnInit {
     this.categorieService.getAllCategorie().subscribe(
       (res: any) => {
         this.categories = res.categories;
-        console.log(this.categories, 'this.categories');
 
         this.spinner.hide();
       },
@@ -64,16 +63,12 @@ export class NavBarComponent implements OnInit {
       (category) => category.id_Categorie.name === name
     );
 
-    console.log(this.responseSearchService, 'this.responseSearchService');
-
     return this.responseSearchService;
   }
 
   showDiv50: boolean = false;
 
   toggleDiv50(data: boolean, name: string) {
-    console.log(name, 'namename');
-
     this.findCategoriesByName(name);
     this.showDiv50 = data;
     this.activeItem = name;

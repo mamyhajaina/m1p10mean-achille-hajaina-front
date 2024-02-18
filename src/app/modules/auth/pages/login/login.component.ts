@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private spinner: NgxSpinnerService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.token = localStorage.getItem('token');
@@ -81,8 +81,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.username, this.password).subscribe(
       (res: any) => {
         if (res) {
-          console.log('res', res);
-
           const {
             token,
             username,
@@ -138,7 +136,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  changePassword() { }
+  changePassword() {}
 
   updateLastActivityTime() {
     localStorage.setItem('lastActivityTime', new Date().getTime().toString());
