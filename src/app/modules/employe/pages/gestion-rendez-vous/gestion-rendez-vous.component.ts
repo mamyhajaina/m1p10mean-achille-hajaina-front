@@ -10,24 +10,26 @@ import { environments } from 'src/environments/environments';
   styleUrls: ['./gestion-rendez-vous.component.css'],
 })
 export class GestionRendezVousComponent implements OnInit {
-  idUser = localStorage.getItem('id') || '';
+  idUser: string = '';
   rendezVous: RendezVous[] = [];
   environments = environments;
   oneRendezVous: RendezVous[] = [];
   token: any;
 
-  constructor(private rendezVousService: RendezVousService) {}
+  constructor(private rendezVousService: RendezVousService) { }
 
   ngOnInit() {
     this.token = localStorage.getItem('token');
-    this.getRendezVous();
+    this.idUser = localStorage.getItem('id') || '';
+    console.log(this.token, 'token');
+    console.log(this.idUser, 'this.idUser');
     this.getRendezVousByIdEmploye();
   }
 
   getRendezVous() {
-    this.rendezVousService.getRendezVous(this.idUser, this.token).subscribe(
+
+    this.rendezVousService.getRendezVous(this.token).subscribe(
       (res: any) => {
-        this.rendezVous = res;
       },
       (error: any) => {
         console.error(
@@ -39,8 +41,10 @@ export class GestionRendezVousComponent implements OnInit {
   }
 
   getRendezVousByIdEmploye() {
-    this.rendezVousService
-      .getRendezVousByIdEmploye(this.idUser, this.token)
-      .subscribe((res: any) => {});
+    this.rendezVousService.getRendezVousByIdEmploye(this.idUser, this.token).subscribe((res: any) => {
+      console.log('res', res);
+      this.rendezVous = res;
+      console.log('rendezVous', this.rendezVous);
+    });
   }
 }
