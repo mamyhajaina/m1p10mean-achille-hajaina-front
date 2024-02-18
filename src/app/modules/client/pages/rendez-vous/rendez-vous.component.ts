@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RendezVousComponent implements OnInit {
 
+  visible: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  showDialog() {
+    this.visible = true;
   }
 
 }

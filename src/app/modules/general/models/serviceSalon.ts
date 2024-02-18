@@ -1,4 +1,5 @@
 export class ServiceSalon {
+  _id: string = '';
   name: string = '';
   description: string = '';
   dure: number = 0;
