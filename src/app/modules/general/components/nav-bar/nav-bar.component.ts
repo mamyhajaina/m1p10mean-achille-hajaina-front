@@ -6,6 +6,7 @@ import { ServiceSalonService } from '../../service/serviceSalon.service';
 import { ServiceSalon } from '../../models/serviceSalon';
 import { io, Socket } from 'socket.io-client';
 import { Router } from '@angular/router';
+import { environments } from 'src/environments/environments';
 
 @Component({
   selector: 'app-nav-bar',
@@ -31,7 +32,7 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
     this.getAllCategories();
-    this.socket = io('http://localhost:1200');
+    this.socket = io(environments.BASE_URL);
     this.socket.on('newCategoryAdded', () => {
       this.getAllCategories();
     });

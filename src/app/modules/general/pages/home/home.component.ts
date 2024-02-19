@@ -3,6 +3,7 @@ import { CategorieService } from '../../service/categorie.service';
 import { Categorie } from '../../models/categorie';
 import { io, Socket } from 'socket.io-client';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environments } from 'src/environments/environments';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.spinner.show();
     this.getAllCategories();
-    this.socket = io('http://localhost:1200');
+    this.socket = io(environments.BASE_URL);
     this.socket.on('newCategoryAdded', () => {
       this.getAllCategories();
     });
