@@ -1,4 +1,5 @@
 <br>
+<p-toast position="top-center" key="tc"></p-toast>
 <div class="container container-head">
     <h3><b> Toutes nos prestations</b></h3>
     <button type="button" class="btn-sm btn btn-outline-info">Prendre rendez-vous</button>
@@ -25,7 +26,8 @@
                         <th>Image</th>
                         <th pSortableColumn="name" style="width: 20%;">Service <p-sortIcon field="name"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="prix" style="width: 15%;">Prix <p-sortIcon field="prix"></p-sortIcon></th>
+                        <th pSortableColumn="prix" style="width: 15%;">Prix (Ar) <p-sortIcon field="prix"></p-sortIcon>
+                        </th>
                         <th pSortableColumn="name" style="width: 20%;">Categorie <p-sortIcon field="name"></p-sortIcon>
                         </th>
                         <th>Reviews</th>
@@ -60,7 +62,7 @@
                                 [alt]="product.name" width="100" class="shadow-4" /></td>
                         <td style="width: 20%;">{{product.name}}</td>
                         <td>
-                            {{product.prix | currency:'USD'}}</td>
+                            {{product.prix}} Ar</td>
                         <td>
                             <p-tag value="{{product.id_Categorie.name}}"
                                 [severity]="getSeverity(product.id_Categorie.name)">
@@ -83,7 +85,7 @@
                     <tr>
                         <th>Categorie</th>
                         <th>Service</th>
-                        <th>Prix</th>
+                        <th>Prix (Ar)</th>
                         <th>Durée</th>
                         <th></th>
                     </tr>
@@ -92,7 +94,7 @@
                     <tr>
                         <td>{{product.id_Categorie.name}}</td>
                         <td>{{product.name}}</td>
-                        <td>{{product.prix}}</td>
+                        <td>{{product.prix}} Ar</td>
                         <td>{{product.dure}}</td>
                         <td><span class="pi pi-trash delete-icon" (click)="onRemoveProduct(product)"></span></td>
                     </tr>
@@ -100,7 +102,7 @@
             </p-table>
             <br>
             <button *ngIf="selectedProducts.length" type="button" class="btn-sm btn btn-outline-danger"
-                style="width: 50%; margin-left: 25%;">Choisir l'horaire</button>
+                style="width: 50%; margin-left: 25%;" (click)="saveInPanier()">Choisir l'horaire</button>
         </div>
         <div class="col-md-1"></div>
     </div>
@@ -115,8 +117,7 @@
     <ng-template pTemplate="body">
         <div class="row text-center">
             <h2 class="tittle"><b>{{detailsService.name}}</b></h2>
-            <span><b>A partir de {{detailsService.prix | currency:
-                    'USD'}}</b></span>
+            <span><b>A partir de {{detailsService.prix}} Ar</b></span>
         </div>
         <br>
         <div class="row text-center">
@@ -145,3 +146,4 @@
             (click)="onAddSelectService(detailsService)" styleClass="p-button-text p-button-danger"></p-button>
     </ng-template>
 </p-dialog>
+<app-footer></app-footer>

@@ -7,6 +7,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { SousCategorieComponent } from './components/sous-categorie/sous-categorie.component';
+import { PanierComponent } from './components/panier/panier.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'salon', // child route path
         component: SousCategorieComponent, // child route component that the router renders
+      },
+      {
+        path: 'panier', // child route path
+        component: PanierComponent, // child route component that the router renders
       },
       {
         path: '',
