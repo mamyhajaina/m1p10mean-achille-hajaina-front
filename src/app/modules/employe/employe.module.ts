@@ -8,6 +8,11 @@ import { ProfilHoraireTravailComponent } from './pages/profil-horaire-travail/pr
 import { GestionTachesComponent } from './pages/gestion-taches/gestion-taches.component';
 import { GestionRendezVousComponent } from './pages/gestion-rendez-vous/gestion-rendez-vous.component';
 import { HoraireTravailComponent } from './components/horaire-travail/horaire-travail.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
+import { FormsModule } from '@angular/forms';
 // @import 'assets/assets/css/style.css';
 
 @NgModule({
@@ -22,7 +27,12 @@ import { HoraireTravailComponent } from './components/horaire-travail/horaire-tr
     CommonModule,
     EmployeRoutes,
     GeneralModule,
-    TabViewModule
+    TabViewModule,
+    NgxSpinnerModule,
+    DialogModule,
+    ConfirmDialogModule,
+    ToastModule,
+    FormsModule
   ]
 })
 export class EmployeModule { }
