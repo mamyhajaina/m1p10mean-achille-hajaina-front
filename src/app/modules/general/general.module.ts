@@ -47,6 +47,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { PaginatorModule } from 'primeng/paginator';
 import { PanierComponent } from './components/panier/panier.component';
 import { MessageService } from 'primeng/api';
+import { HeureService } from './models/heure.service';
 
 @NgModule({
   imports: [
@@ -107,6 +108,6 @@ import { MessageService } from 'primeng/api';
     MenuAdminComponent,
     ButtonNotificationProfilComponent,
   ],
-  providers: [MessageService],
+  providers: [MessageService, HeureService],
 })
 export class GeneralModule {}

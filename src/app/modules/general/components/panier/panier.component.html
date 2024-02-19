@@ -8,67 +8,111 @@
             <span [style.color]="'darkslateblue'"><b>Mon panier</b></span>
           </div>
           <hr class="hr" />
-          <div class="card-header" *ngFor="let item of panier">
-            <br>
-            <div class="row">
-              <h5>
-                {{item.id_Categorie.name}}
-              </h5>
-              <br>
-              <br>
-              <h6 for="">
-                {{item.name}}
-              </h6>
-              <br>
-              <h6 for="">
-                {{item.dure}} minutes
-              </h6>
-              <br>
-              <h6 for="">
-                {{item.prix}} Ar
-              </h6>
-            </div>
-            <br><br>
-            <div class="row">
-              <div class="input-icone">
-                <select class="form-select form-select-lg" aria-label=".form-select-lg example">
-                  <option selected>Un(e) employé(e)</option>
-                  <option *ngFor="let item of employes" value="{{item._id}}">{{item.username}}</option>
-                </select>
-                <i class="bi bi-person fa-lg fa-fw" aria-hidden="true"></i>
-              </div>
-            </div>
-            <br>
-            <hr class="hr" />
-          </div>
-          <div
-            class="Stack-module_stack__19jn1 Stack-module_xxl__3s_VC Inline-module_alignNormal__23EVb Inline-module_justifyStart__2svO3">
-            <a href="/public/salon" class="AddServiceLink-module_link_c7bea2" data-cy="AddServiceLink">
-              <div tabindex="0"
-                class="Inline-module_inline__1aHBb Inline-module_sm__19DiN Inline-module_alignCenter__uIC18 Inline-module_justifyStart__2svO3">
-                <div class="MediaObject-module_mediaItem__1pFSb">
-                  <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                    preserveAspectRatio="xMidYMid meet" fill="currentColor">
-                    <path
-                      d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1zm0 2a9 9 0 10.001 18.001A9 9 0 0012 3zm1 4v4h4v2h-4v4h-2v-4H7v-2h4V7h2z"
-                      fill-rule="evenodd"></path>
-                  </svg>
-                </div>
-                <span class="Text-module_body__2lxF8">Ajouter un autre service de Optimiste Paris</span>
-              </div>
-            </a>
-          </div>
         </div>
         <div class="col-md-6">
           <div class="card-header text-center">
-            <span [style.color]="'darkslateblue'"><b>Sélectionnez l'heure de début de votre rendez-vous</b></span>
+            <span [style.color]="'darkslateblue'"><b>Sélectionnez la date et l'heure de début de votre
+                rendez-vous</b></span>
           </div>
-          <div class="header text-center">
-            <br>
-            <p-calendar [(ngModel)]="date" [inline]="true" [showTime]="true" [showWeek]="true"></p-calendar>
-            <br>
-            <br>
-            <button type="button" style="width: 80%;" class="btn btn-secondary-perso btn-lg">Vérifier</button>
+        </div>
+        <div class="row custom-row" *ngFor="let item of panier">
+          <div class="col-md-6 custom-width">
+            <div class="card-header">
+              <br>
+              <div class="row">
+                <div class="col-md-10">
+                  <h5>
+                    {{item.id_Categorie.name}}
+                  </h5>
+                  <br>
+                  <br>
+                  <h6 for="">
+                    {{item.name}}
+                  </h6>
+                  <br>
+                  <h6 for="">
+                    {{item.dure}} minutes
+                  </h6>
+                  <br>
+                  <h6 for="">
+                    {{item.prix}} Ar
+                  </h6>
+                </div>
+                <div class="col-md-1 icon-cancel"><p-button icon="pi pi-times" (click)="onCancelPanier(item)"
+                    styleClass="p-button-rounded p-button-danger p-button-outlined"></p-button></div>
+              </div>
+              <br><br>
+              <div class="row">
+                <div class="input-icone">
+                  <select class="form-select form-select-lg" aria-label=".form-select-lg example">
+                    <option selected>Un(e) employé(e)</option>
+                    <option *ngFor="let item of employes" value="{{item._id}}">{{item.username}}</option>
+                  </select>
+                  <i class="bi bi-person fa-lg fa-fw" aria-hidden="true"></i>
+                </div>
+              </div>
+              <br>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="header">
+              <br>
+              <div class="container-calendar">
+                <div class="calendar light">
+                  <div class="calendar_header">
+                    <h4 class="header_title"><b>Calendrier</b></h4>
+                    <p class="header_copy"> Choisir vos préférences</p>
+                  </div>
+                  <div class="calendar_plan">
+                    <div class="cl_plan">
+                      <div class="cl_copy">{{this.date | date: 'dd MMM y' }}</div>
+                      <div class="cl_add">
+                        <i class="pi pi-plus" (click)="showDialog()"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p-dialog [dismissableMask]="true" [(visible)]="visible" [style]="{ width: '50vw' }" [modal]="true"
+                    [draggable]="false" [resizable]="false">
+                    <p-calendar class="max-w-full" [inline]="true" [showWeek]="true" [touchUI]="true"
+                      [readonlyInput]="true" [showButtonBar]="true"
+                      (onSelect)="handleCalendarClose($event)"></p-calendar>
+                  </p-dialog>
+                  <div class="calendar_events">
+                    <p class="ce_title">Horaire</p>
+                    <div class="event_item" *ngFor="let item of heures" (click)="toggleActive(item)">
+                      <div class="ei_Dot" [ngClass]="{'dot_active': item === selectedItem}"></div>
+                      <div class="ei_Title">{{item.name}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="padding: 20px;">
+          <div class="col-md-6">
+            <div
+              class="Stack-module_stack__19jn1 Stack-module_xxl__3s_VC Inline-module_alignNormal__23EVb Inline-module_justifyStart__2svO3">
+              <a href="/public/salon" class="AddServiceLink-module_link_c7bea2" data-cy="AddServiceLink">
+                <div tabindex="0"
+                  class="Inline-module_inline__1aHBb Inline-module_sm__19DiN Inline-module_alignCenter__uIC18 Inline-module_justifyStart__2svO3">
+                  <div class="MediaObject-module_mediaItem__1pFSb">
+                    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true" preserveAspectRatio="xMidYMid meet" fill="currentColor">
+                      <path
+                        d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1zm0 2a9 9 0 10.001 18.001A9 9 0 0012 3zm1 4v4h4v2h-4v4h-2v-4H7v-2h4V7h2z"
+                        fill-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span class="Text-module_body__2lxF8">Ajouter un autre service</span>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <button type="button" style="width: 80%;  margin-left: 13%;"
+              class="btn btn-secondary-perso btn-lg">Vérifier</button>
           </div>
         </div>
       </div>
@@ -79,7 +123,7 @@
 <footer id="footer" class="footer fixed-bottom custom-footer">
   <div class="container">
     <div class="copyright">
-      &copy; Copyright <strong><span>ANDRIANTSITOHAINA Lahatra Mamy Hajaina</span></strong> and
+      &copy; © 2024 Copyright <strong><span>ANDRIANTSITOHAINA Lahatra Mamy Hajaina</span></strong> and
       <strong><span>FANOMEZANTSOA Achille Aubin</span></strong>
     </div>
     <div class="credits" style="color: #ff6668;">

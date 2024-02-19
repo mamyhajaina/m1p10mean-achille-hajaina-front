@@ -146,6 +146,24 @@
   border-radius: 0;
 }
 
+@media (max-width: 1820px) {
+  .div50 {
+    height: 45vh;
+  }
+}
+
+@media (max-width: 950px) {
+  .div50 {
+    height: 55vh;
+  }
+}
+
+@media (max-width: 768) {
+  .div50 {
+    display: none;
+  }
+}
+
 .overlay-dark {
   position: absolute;
   top: 10;
