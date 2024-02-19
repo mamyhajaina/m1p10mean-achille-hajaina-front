@@ -11,22 +11,27 @@
           <div class="card-header" *ngFor="let item of panier">
             <br>
             <div class="row">
-              <h5>
-                {{item.id_Categorie.name}}
-              </h5>
-              <br>
-              <br>
-              <h6 for="">
-                {{item.name}}
-              </h6>
-              <br>
-              <h6 for="">
-                {{item.dure}} minutes
-              </h6>
-              <br>
-              <h6 for="">
-                {{item.prix}} Ar
-              </h6>
+              <div class="col-md-11">
+                <h5>
+                  {{item.id_Categorie.name}}
+                </h5>
+                <br>
+                <br>
+                <h6 for="">
+                  {{item.name}}
+                </h6>
+                <br>
+                <h6 for="">
+                  {{item.dure}} minutes
+                </h6>
+                <br>
+                <h6 for="">
+                  {{item.prix}} Ar
+                </h6>
+              </div>
+              <div class="col-md-1">
+
+              </div>
             </div>
             <br><br>
             <div class="row">
