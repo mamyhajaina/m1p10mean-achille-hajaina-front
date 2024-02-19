@@ -6,9 +6,9 @@ import { environments } from 'src/environments/environments';
   providedIn: 'root',
 })
 export class RendezVousService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getRendezVous(idUser: string, token: string): any {
+  getRendezVous(token: string): any {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
@@ -20,14 +20,49 @@ export class RendezVousService {
     );
   }
 
-  getRendezVousByIdEmploye(idUser: string, token: string): any {
+  getRendezVousByIdEmploye(idEmploye: string, token: string): any {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,
       }),
     };
     return this.http.get(
-      `${environments.BASE_URL}/rendezVous/listRendezVous/employe/${idUser}`,
+      `${environments.BASE_URL}/rendezVous/list/${idEmploye}`,
+      httpOptions
+    );
+  }
+
+  validerRendezVous(idRendezVous: string, idEmploye: string, token: string): any {
+    let body = {
+      idRendezVous: idRendezVous,
+      idEmploye: idEmploye
+    }
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+    return this.http.post(
+      `${environments.BASE_URL}/rendezVous/valider`,
+      body,
+      httpOptions
+    );
+  }
+
+  refuserRendezVous(idRendezVous: string, idEmploye: string, raison: string, token: string): any {
+    let body = {
+      idRendezVous: idRendezVous,
+      idEmploye: idEmploye,
+      raison: raison
+    }
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+    return this.http.post(
+      `${environments.BASE_URL}/rendezVous/refuser`,
+      body,
       httpOptions
     );
   }

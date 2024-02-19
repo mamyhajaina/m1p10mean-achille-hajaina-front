@@ -81,7 +81,7 @@
     <li class="nav-item dropdown pe-3" (click)="toggleProfil()">
 
       <button class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown">
-        <img src="{{environments.url_image}}avatar.webp" alt="Profile" class="rounded-circle">
+        <img src="{{environments.url_image}}{{this.dataUserConnected.image}}" alt="Profile" class="rounded-circle">
         <span class="d-none d-md-block dropdown-toggle ps-2">{{this.dataUserConnected.username}}</span>
       </button><!-- End Profile Iamge Icon -->
 
