@@ -1,13 +1,18 @@
 @import "../../assets/assetsHome/css/style.css";
 
 .container-panier {
-  margin-top: 2%;
-  max-height: 850px;
-  overflow-y: auto;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .input-icone {
   position: relative;
+}
+
+.custom-verif {
+  margin-bottom: 3%;
 }
 
 .input-icone i {
@@ -174,6 +179,10 @@ $light_grey: #a39d9e;
   background-color: #ff6668;
 }
 
+.name_active {
+  color: #ff6668 !important;
+}
+
 .ei_Title {
   margin-left: 10px;
   color: #363b41;
@@ -190,4 +199,11 @@ $light_grey: #a39d9e;
 
 .custom-row {
   border-bottom: 1px solid #e3dddd;
+}
+
+::ng-deep {
+  .p-datepicker table th {
+    padding: 0.5rem;
+    text-align: center !important;
+  }
 }

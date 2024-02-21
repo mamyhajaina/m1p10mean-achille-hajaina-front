@@ -7,6 +7,7 @@ import { ServiceSalon } from '../../models/serviceSalon';
 import { io, Socket } from 'socket.io-client';
 import { Router } from '@angular/router';
 import { environments } from 'src/environments/environments';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-nav-bar',
@@ -25,12 +26,14 @@ export class NavBarComponent implements OnInit {
     private serviceSalonService: ServiceSalonService,
     private categorieService: CategorieService,
     private spinner: NgxSpinnerService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {
     this.currentUrl = this.router.url;
   }
 
   ngOnInit() {
+    sessionStorage.setItem('url', this.location.path());
     this.getAllCategories();
     this.socket = io(environments.BASE_URL);
     this.socket.on('newCategoryAdded', () => {

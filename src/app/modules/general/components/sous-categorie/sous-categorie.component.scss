@@ -124,3 +124,7 @@
   font-style: italic;
   color: forestgreen;
 }
+
+.custom-footer {
+  flex-shrink: 0 !important;
+}
