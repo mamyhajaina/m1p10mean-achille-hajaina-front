@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    sessionStorage.clear();
     this.spinner.show();
     this.getAllCategories();
     this.socket = io(environments.BASE_URL);

@@ -8,6 +8,7 @@ import { ServicesComponent } from './pages/services/services.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { SousCategorieComponent } from './components/sous-categorie/sous-categorie.component';
 import { PanierComponent } from './components/panier/panier.component';
+import { PaiementComponent } from './components/categorie/paiement.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
       {
         path: 'panier', // child route path
         component: PanierComponent, // child route component that the router renders
+      },
+      {
+        path: 'paiement', // child route path
+        component: PaiementComponent, // child route component that the router renders
       },
       {
         path: '',

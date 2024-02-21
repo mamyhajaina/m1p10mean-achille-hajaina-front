@@ -23,6 +23,7 @@ export class AuthService {
 
   logout(token: string) {
     localStorage.clear();
+    sessionStorage.clear();
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,

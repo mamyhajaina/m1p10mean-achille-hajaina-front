@@ -3,6 +3,8 @@ import { ServiceSalon } from '../../models/serviceSalon';
 import { ServiceSalonService } from '../../service/serviceSalon.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Location } from '@angular/common';
 
 interface PageEvent {
   first: number;
@@ -28,14 +30,20 @@ export class SousCategorieComponent implements OnInit {
   detailsService: ServiceSalon = new ServiceSalon();
   popupPanier: boolean = false;
   panier: ServiceSalon[] = [];
+  footer: boolean = false;
 
   constructor(
     private productService: ServiceSalonService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private spinner: NgxSpinnerService,
+    private location: Location
   ) {}
 
   ngOnInit() {
+    sessionStorage.setItem('url', this.location.path());
+    this.spinner.show();
+    this.footer = false;
     this.selectedProducts = [];
     const panierString = sessionStorage.getItem('panier');
     this.panier = panierString ? JSON.parse(panierString) : [];
@@ -58,8 +66,11 @@ export class SousCategorieComponent implements OnInit {
     this.productService.getTopServices().subscribe(
       (res: any) => {
         this.availableProducts = res;
+        this.footer = true;
+        this.spinner.hide();
       },
       (error: any) => {
+        this.spinner.hide();
         console.error(
           "Une erreur s'est produite lors de la récupération des catégories : ",
           error

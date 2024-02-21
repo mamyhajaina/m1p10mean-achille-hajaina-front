@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceSalon } from '../../models/serviceSalon';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-services',
@@ -6,18 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./services.component.css'],
 })
 export class ServicesComponent implements OnInit {
-  visible: boolean = false;
   rangeDates: Date[] | undefined;
   value: string | undefined;
   valueRating: number = 5;
+  service: ServiceSalon = new ServiceSalon();
 
-  constructor() {}
+  constructor(private router: Router, private location: Location) {}
 
   countries: any[] = [];
 
   selectedCountry: string | undefined;
 
   ngOnInit() {
+    sessionStorage.setItem('url', this.location.path());
+    sessionStorage.removeItem('panier');
+    const serviceString = sessionStorage.getItem('service');
+    this.service = serviceString ? JSON.parse(serviceString) : [];
     this.countries = [
       { name: 'Australia', code: 'AU' },
       { name: 'Brazil', code: 'BR' },
@@ -30,25 +37,6 @@ export class ServicesComponent implements OnInit {
       { name: 'Spain', code: 'ES' },
       { name: 'United States', code: 'US' },
     ];
-
-    this.images = [
-      {
-        name: 'image',
-        itemImageSrc: '../../../../../assets/assets/img/product-1.jpg',
-      },
-      {
-        name: 'image',
-        itemImageSrc: '../../../../../assets/assets/img/product-2.jpg',
-      },
-      {
-        name: 'image',
-        itemImageSrc: '../../../../../assets/assets/img/product-3.jpg',
-      },
-    ];
-  }
-
-  showDialog() {
-    this.visible = true;
   }
 
   loading: boolean = false;
@@ -61,20 +49,8 @@ export class ServicesComponent implements OnInit {
     }, 2000);
   }
 
-  images: any[] = [];
-
-  responsiveOptions: any[] = [
-    {
-      breakpoint: '1024px',
-      numVisible: 5,
-    },
-    {
-      breakpoint: '768px',
-      numVisible: 3,
-    },
-    {
-      breakpoint: '560px',
-      numVisible: 1,
-    },
-  ];
+  onNavigateSalon() {
+    sessionStorage.setItem('panier', JSON.stringify([this.service]));
+    this.router.navigate(['/public/salon']);
+  }
 }

@@ -6,7 +6,6 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderAdminComponent } from './components/Header-Admin/Header-Admin.component';
-import { CategorieComponent } from './components/categorie/categorie.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { MenuAdminComponent } from './components/menu-Admin/menu-Admin.component';
 import { FooterAdminComponent } from './components/footerAdmin/footerAdmin.component';
@@ -48,6 +47,9 @@ import { PaginatorModule } from 'primeng/paginator';
 import { PanierComponent } from './components/panier/panier.component';
 import { MessageService } from 'primeng/api';
 import { HeureService } from './models/heure.service';
+import { CarouselModule } from 'primeng/carousel';
+import { MessagesModule } from 'primeng/messages';
+import { PaiementComponent } from './components/categorie/paiement.component';
 
 @NgModule({
   imports: [
@@ -81,6 +83,8 @@ import { HeureService } from './models/heure.service';
     MatCardModule,
     MatDatepickerModule,
     PaginatorModule,
+    CarouselModule,
+    MessagesModule,
   ],
   declarations: [
     GeneralComponent,
@@ -88,7 +92,7 @@ import { HeureService } from './models/heure.service';
     HomeComponent,
     FooterComponent,
     HeaderAdminComponent,
-    CategorieComponent,
+    PaiementComponent,
     DetailsComponent,
     MenuAdminComponent,
     FooterAdminComponent,

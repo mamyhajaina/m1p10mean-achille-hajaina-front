@@ -24,7 +24,8 @@
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/ngx-spinner/animations/square-jelly-box.css",
-              "node_modules/ngx-spinner/animations/line-spin-fade-rotating.css"
+              "node_modules/ngx-spinner/animations/line-spin-fade-rotating.css",
+              "node_modules/ngx-spinner/animations/ball-pulse.css"
             ],
             "scripts": []
           },

@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   checkToken: boolean = false;
   disabledlogin: boolean = false;
   sessionTimeout: any;
+  url: any;
 
   constructor(
     private messageService: MessageService,
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.token = localStorage.getItem('token');
+    this.url = sessionStorage.getItem('url');
     this.checkSessionTimeout();
   }
 
@@ -125,7 +127,11 @@ export class LoginComponent implements OnInit {
     } else if (role === 'Manager') {
       this.router.navigate(['/manager']);
     } else if (role === 'Client') {
-      this.router.navigate(['/home']);
+      if (this.url) {
+        this.router.navigate([this.url.toString()]);
+      } else {
+        this.router.navigate(['/home']);
+      }
     }
   }
 

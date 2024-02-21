@@ -148,18 +148,21 @@
 
 @media (max-width: 1820px) {
   .div50 {
-    height: 45vh;
+    height: 35vh;
   }
 }
 
 @media (max-width: 950px) {
   .div50 {
-    height: 55vh;
+    height: 40vh;
   }
 }
 
-@media (max-width: 768) {
+@media (max-width: 767px) {
   .div50 {
+    display: none;
+  }
+  .overlay-dark {
     display: none;
   }
 }

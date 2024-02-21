@@ -1,6 +1,7 @@
 footer {
   bottom: 0;
   width: 100%;
+  flex-shrink: 0;
 }
 
 footer {
