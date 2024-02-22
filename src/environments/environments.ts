@@ -1,5 +1,5 @@
 export const environments = {
   production: false,
-  BASE_URL: 'https://m1p10mean-achille-hajaina-front.pages.dev',
+  BASE_URL: 'https://charmeeclatservice.onrender.com',
   url_image: '/assets/assets/img/',
 };
