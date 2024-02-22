@@ -11,4 +11,8 @@ export class EmployeService {
   getAllEmploye(): any {
     return this.http.get(`${environments.BASE_URL}/employe/list`);
   }
+
+  getAllEmployeByEmploye(): any {
+    return this.http.get(`${environments.BASE_URL}/employe/list/categori`);
+  }
 }

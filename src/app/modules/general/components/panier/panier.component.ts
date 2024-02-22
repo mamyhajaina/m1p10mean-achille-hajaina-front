@@ -39,6 +39,7 @@ export class PanierComponent implements OnInit {
   checkStatus: boolean = false;
   token: any;
   employeName: String[] = [];
+  employerCat: any[] = [];
 
   constructor(
     private employeService: EmployeService,
@@ -116,6 +117,7 @@ export class PanierComponent implements OnInit {
     this.getAllEmploye();
     this.addDefaultHours();
     this.addDefaultDate();
+    this.getAllEmployeByCat();
   }
 
   addDefaultDate() {
@@ -133,8 +135,18 @@ export class PanierComponent implements OnInit {
   getAllEmploye() {
     this.employeService.getAllEmploye().subscribe((data: Employe[]) => {
       this.employes = data;
-      console.log(this.employes);
     });
+  }
+
+  getAllEmployeByCat() {
+    this.employeService.getAllEmployeByEmploye().subscribe((data: any[]) => {
+      this.employerCat = data;
+    });
+  }
+
+  getEmployesByCat(catId: string): any[] {
+    const categorie = this.employerCat.find((cat) => cat.idCat === catId);
+    return categorie ? categorie.employes : [];
   }
 
   onCancelPanier(product: ServiceSalon) {
