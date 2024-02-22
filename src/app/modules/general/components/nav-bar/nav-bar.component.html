@@ -36,7 +36,14 @@
 <div class="container-div host-listner" [ngClass]="{'overlay-dark': showDiv50}">
     <div class="card text-center div50" *ngIf="showDiv50">
         <div class="row with-padding">
-            <div class="col-md-2"> </div>
+            <div class="col-md-2">
+                <div class="custom-btn">
+                    <button type="button" (click)="showDiv50 = false" class="btn btn-danger btn-floating"
+                        data-mdb-ripple-init>
+                        <i class="pi pi-times"></i>
+                    </button>
+                </div>
+            </div>
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-4">

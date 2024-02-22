@@ -183,3 +183,7 @@
   font-style: italic;
   color: #ff6668;
 }
+
+.custom-btn {
+  text-align: left !important;
+}

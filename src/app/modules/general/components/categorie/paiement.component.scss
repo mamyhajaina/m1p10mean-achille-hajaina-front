@@ -308,3 +308,57 @@ ul li:hover {
     max-height: 40vh;
     overflow-y: auto;
 }
+
+@media (max-height: 1208px) {
+    .scrollable-content {
+        max-height: 41vh;
+    }
+}
+
+@media (max-height: 1130px) {
+    .scrollable-content {
+        max-height: 42vh;
+    }
+}
+
+@media (max-height: 1085px) {
+    .scrollable-content {
+        max-height: 43vh;
+    }
+}
+
+@media (max-height: 1028px) {
+    .scrollable-content {
+        max-height: 43vh;
+    }
+}
+
+@media (max-height: 1032px) {
+    .scrollable-content {
+        max-height: 47vh;
+    }
+}
+
+@media (max-height: 938px) {
+    .scrollable-content {
+        max-height: 50vh;
+    }
+}
+
+@media (max-height: 850px) {
+    .scrollable-content {
+        max-height: 59vh;
+    }
+}
+
+@media (max-height: 800px) {
+    .scrollable-content {
+        max-height: 60vh;
+    }
+}
+
+@media (max-height: 758px) {
+    .scrollable-content {
+        max-height: 65vh;
+    }
+}
