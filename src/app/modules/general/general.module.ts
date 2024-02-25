@@ -52,6 +52,7 @@ import { PaiementComponent } from './components/paiement/paiement.component';
 import { ListeRendezVousComponent } from './components/liste-rendez-vous/liste-rendez-vous.component';
 import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
   imports: [
@@ -89,6 +90,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     MessagesModule,
     DataViewModule,
     ConfirmDialogModule,
+    SkeletonModule,
   ],
   declarations: [
     GeneralComponent,
