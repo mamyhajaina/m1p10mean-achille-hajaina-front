@@ -40,6 +40,7 @@ export class PanierComponent implements OnInit {
   token: any;
   employeName: String[] = [];
   employerCat: any[] = [];
+  total: number = 0;
 
   constructor(
     private employeService: EmployeService,
@@ -207,6 +208,8 @@ export class PanierComponent implements OnInit {
       });
     }
 
+    console.log(this.dataVerif, 'this.dataVerif');
+
     this.rendezVousService.checkEmployeStatus(this.dataVerif).subscribe(
       (data: any) => {
         let allStatusTrue = true;
@@ -259,13 +262,9 @@ export class PanierComponent implements OnInit {
     sessionStorage.removeItem('paiement');
     let panierTemp = [];
     let employe: any;
-    let total: number;
-    total = this.panier[0].prix;
     for (let index = 0; index < this.panier.length; index++) {
-      total = total + this.panier[index].prix;
+      this.total = this.total + parseInt(this.panier[index].prix);
       if (this.dataVerif[index].idEmploye === null) {
-        this.dataVerif[index].idEmploye =
-          'Avec le premier styliste / thérapeute disponible';
         employe = 'Avec le premier styliste / thérapeute disponible';
       } else {
         this.dataVerif[index].idEmploye = this.dataVerif[index].idEmploye;
@@ -277,13 +276,14 @@ export class PanierComponent implements OnInit {
       panierTemp[index] = {
         dateTime: this.dataVerif[index].date,
         service: this.panier[index].name,
+        idService: this.panier[index]._id,
         categorie: this.panier[index].id_Categorie.name,
         employe: this.dataVerif[index].idEmploye,
         prix: this.panier[index].prix,
         duree: this.panier[index].dure,
         image: this.panier[index].image[0].name,
         employeName: employe,
-        total: total,
+        total: this.total,
       };
     }
     sessionStorage.setItem('paiement', JSON.stringify(panierTemp));

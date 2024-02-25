@@ -8,7 +8,8 @@ import { ServicesComponent } from './pages/services/services.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { SousCategorieComponent } from './components/sous-categorie/sous-categorie.component';
 import { PanierComponent } from './components/panier/panier.component';
-import { PaiementComponent } from './components/categorie/paiement.component';
+import { PaiementComponent } from './components/paiement/paiement.component';
+import { ListeRendezVousComponent } from './components/liste-rendez-vous/liste-rendez-vous.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'paiement', // child route path
         component: PaiementComponent, // child route component that the router renders
+      },
+      {
+        path: 'client', // child route path
+        component: ListeRendezVousComponent, // child route component that the router renders
       },
       {
         path: '',
