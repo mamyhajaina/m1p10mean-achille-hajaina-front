@@ -66,6 +66,12 @@ ul li:hover {
     font-weight: 400;
 }
 
+.cust-tittle {
+    padding: 1%;
+    color: white;
+    background-color: darkslateblue;
+}
+
 .small {
     font-size: 12px;
     font-size: .8rem;
@@ -83,7 +89,7 @@ ul li:hover {
 
 .window {
     height: 700px;
-    width: 800px;
+    width: 1000px;
     background: #fff;
     display: -webkit-box;
     display: -webkit-flex;
@@ -95,7 +101,7 @@ ul li:hover {
 
 .order-info {
     height: 100%;
-    width: 50%;
+    width: 70%;
     padding-left: 25px;
     padding-right: 25px;
     box-sizing: border-box;
@@ -114,11 +120,12 @@ ul li:hover {
     bottom: 0px;
     position: absolute;
     right: 0px;
-    color: #ff6668;
+    color: #66ff8a;
 }
 
 .order-table td:first-of-type {
     width: 25%;
+    height: 10px;
 }
 
 .order-table {
@@ -206,7 +213,7 @@ ul li:hover {
 .credit-info {
     background: #ff6668;
     height: 100%;
-    width: 50%;
+    width: 30%;
     color: #eee;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
@@ -275,7 +282,7 @@ ul li:hover {
     width: 100%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 997px) {
     .window {
         width: 100%;
         height: 100%;

@@ -1,0 +1,14 @@
+/* styles.css ou styles.scss */
+@import '../../assets/assetsHome/css/style.css';
+
+.footer {
+    flex-shrink: 0;
+}
+
+.text-green-500 {
+    color: rgb(47, 199, 47);
+}
+
+.text-red-500 {
+    color: red;
+}

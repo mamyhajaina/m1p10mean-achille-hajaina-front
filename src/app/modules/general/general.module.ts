@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GeneralComponent } from './general.component';
 import { GeneralRoutes } from './general.routing.module';
@@ -12,7 +12,6 @@ import { FooterAdminComponent } from './components/footerAdmin/footerAdmin.compo
 import { AboutComponent } from './pages/about/about.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ContactComponent } from './pages/contact/contact.component';
-import { PriseRendezVousComponent } from './components/prise-rendez-vous/prise-rendez-vous.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -45,11 +44,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { PaginatorModule } from 'primeng/paginator';
 import { PanierComponent } from './components/panier/panier.component';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { HeureService } from './models/heure.service';
 import { CarouselModule } from 'primeng/carousel';
 import { MessagesModule } from 'primeng/messages';
-import { PaiementComponent } from './components/categorie/paiement.component';
+import { PaiementComponent } from './components/paiement/paiement.component';
+import { ListeRendezVousComponent } from './components/liste-rendez-vous/liste-rendez-vous.component';
+import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   imports: [
@@ -85,6 +87,8 @@ import { PaiementComponent } from './components/categorie/paiement.component';
     PaginatorModule,
     CarouselModule,
     MessagesModule,
+    DataViewModule,
+    ConfirmDialogModule,
   ],
   declarations: [
     GeneralComponent,
@@ -99,7 +103,7 @@ import { PaiementComponent } from './components/categorie/paiement.component';
     AboutComponent,
     ServicesComponent,
     ContactComponent,
-    PriseRendezVousComponent,
+    ListeRendezVousComponent,
     ButtonNotificationProfilComponent,
     SousCategorieComponent,
     TopServiceComponent,
@@ -112,6 +116,7 @@ import { PaiementComponent } from './components/categorie/paiement.component';
     MenuAdminComponent,
     ButtonNotificationProfilComponent,
   ],
-  providers: [MessageService, HeureService],
+  providers: [MessageService, HeureService, ConfirmationService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class GeneralModule {}
