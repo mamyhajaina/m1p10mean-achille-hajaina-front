@@ -82,26 +82,19 @@ export class SousCategorieComponent implements OnInit {
   onAddSelectService(product: ServiceSalon) {
     const panierString = sessionStorage.getItem('panier');
     this.panier = panierString ? JSON.parse(panierString) : [];
-    if (this.panier) {
-      const serviceExists = this.panier.find(
-        (item) => item._id === product._id
-      );
-      if (serviceExists) {
-        this.messageService.add({
-          key: 'tc',
-          severity: 'error',
-          summary: 'Error',
-          detail: `Le service est déjà sélectionné.`,
-        });
-      } else {
-        const index = this.availableProducts.indexOf(product);
-        this.availableProducts.splice(index, 1);
-        this.selectedProducts.push(product);
-      }
-    } else {
-      const index = this.availableProducts.indexOf(product);
-      this.availableProducts.splice(index, 1);
+    const existingService = this.panier.find(
+      (item) => item._id === product._id
+    );
+    if (!existingService) {
+      this.availableProducts.splice(this.availableProducts.indexOf(product), 1);
       this.selectedProducts.push(product);
+    } else {
+      this.messageService.add({
+        key: 'tc',
+        severity: 'error',
+        summary: 'Error',
+        detail: `Le service est déjà sélectionné.`,
+      });
     }
   }
 
@@ -118,37 +111,20 @@ export class SousCategorieComponent implements OnInit {
     const panierString = sessionStorage.getItem('panier');
     this.panier = panierString ? JSON.parse(panierString) : [];
     if (this.draggedProduct) {
-      if (this.panier) {
-        const serviceExists = this.panier.find(
-          (item) => item._id === this.draggedProduct._id
+      if (!this.panier.find((item) => item._id === this.draggedProduct._id)) {
+        const draggedProductIndex = this.availableProducts.indexOf(
+          this.draggedProduct
         );
-        if (serviceExists) {
-          this.messageService.add({
-            key: 'tc',
-            severity: 'error',
-            summary: 'Error',
-            detail: `Le service est déjà sélectionné.`,
-          });
-        } else {
-          let draggedProductIndex = this.findIndex(this.draggedProduct);
-          this.selectedProducts = [
-            ...this.selectedProducts,
-            this.draggedProduct,
-          ];
-          this.availableProducts = this.availableProducts.filter(
-            (val, i) => i != draggedProductIndex
-          );
-
-          this.draggedProduct = null;
-        }
-      } else {
-        let draggedProductIndex = this.findIndex(this.draggedProduct);
-        this.selectedProducts = [...this.selectedProducts, this.draggedProduct];
-        this.availableProducts = this.availableProducts.filter(
-          (val, i) => i != draggedProductIndex
-        );
-
+        this.selectedProducts.push(this.draggedProduct);
+        this.availableProducts.splice(draggedProductIndex, 1);
         this.draggedProduct = null;
+      } else {
+        this.messageService.add({
+          key: 'tc',
+          severity: 'error',
+          summary: 'Error',
+          detail: `Le service est déjà sélectionné.`,
+        });
       }
     }
   }

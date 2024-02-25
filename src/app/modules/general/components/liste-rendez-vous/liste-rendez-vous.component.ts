@@ -41,45 +41,30 @@ export class ListeRendezVousComponent implements OnInit {
 
   activityValues: number[] = [0, 100];
 
+  status: string = '';
   rendezVous: any[] = [];
   userId: any;
   token: any;
+  minHeight: string = '';
 
   constructor(private rendezvousService: RendezVousService) {}
 
   ngOnInit() {
+    this.minHeight = '50rem';
+    this.loading = true;
     this.userId = localStorage.getItem('id');
     this.token = localStorage.getItem('token');
-    this.rendezvousService.getCustomersLarge().then((customers) => {
-      this.customers = customers;
-      this.loading = false;
-
-      this.customers.forEach(
-        (customer) => (customer.date = new Date(customer.date))
-      );
-      this.getRendezVousByUser();
-    });
-
-    this.representatives = [
-      { name: 'Amy Elsner', image: 'amyelsner.png' },
-      { name: 'Anna Fali', image: 'annafali.png' },
-      { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
-      { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
-      { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
-      { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
-      { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
-      { name: 'Onyama Limba', image: 'onyamalimba.png' },
-      { name: 'Stephen Shaw', image: 'stephenshaw.png' },
-      { name: 'Xuxue Feng', image: 'xuxuefeng.png' },
-    ];
+    this.getRendezVousByUser();
 
     this.statuses = [
-      { label: 'Unqualified', value: 'unqualified' },
-      { label: 'Qualified', value: 'qualified' },
-      { label: 'New', value: 'new' },
-      { label: 'Negotiation', value: 'negotiation' },
-      { label: 'Renewal', value: 'renewal' },
-      { label: 'Proposal', value: 'proposal' },
+      { label: 'Terminer', serverity: 'primary', value: 'terminer' },
+      { label: 'Valider', serverity: 'success', value: 'valider' },
+      { label: 'Refuser', serverity: 'danger', value: 'refuser' },
+      {
+        label: 'En vours de traitement',
+        serverity: 'warning',
+        value: 'Encour de traitement',
+      },
     ];
   }
 
@@ -88,7 +73,14 @@ export class ListeRendezVousComponent implements OnInit {
       .getRendezVousByUser(this.userId, this.token)
       .subscribe((data: any) => {
         this.rendezVous = data;
-        console.log(this.rendezVous, 'rendaka');
+        for (let index = 0; index < this.rendezVous.length; index++) {
+          this.rendezVous[index].status =
+            this.rendezVous[index].etat[
+              this.rendezVous[index].etat.length - 1
+            ].name;
+        }
+        this.loading = false;
+        this.minHeight = 'auto';
       });
   }
 
@@ -96,7 +88,7 @@ export class ListeRendezVousComponent implements OnInit {
     table.clear();
   }
 
-  getSeverity(status: string) {
+  getSeverity(status: any) {
     switch (status) {
       case 'unqualified':
         return 'danger';
@@ -114,7 +106,7 @@ export class ListeRendezVousComponent implements OnInit {
         return null;
 
       default:
-        return '';
+        return status;
     }
   }
 }
