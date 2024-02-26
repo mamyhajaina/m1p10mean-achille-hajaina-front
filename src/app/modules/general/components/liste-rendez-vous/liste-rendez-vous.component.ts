@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { RendezVousService } from '../../service/rendez-vous.service';
 import { Table } from 'primeng/table';
+import { MessageService } from 'primeng/api';
 
 export interface Country {
   name: string;
@@ -47,7 +48,10 @@ export class ListeRendezVousComponent implements OnInit {
   token: any;
   minHeight: string = '';
 
-  constructor(private rendezvousService: RendezVousService) {}
+  constructor(
+    private rendezvousService: RendezVousService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit() {
     this.minHeight = '50rem';
@@ -108,5 +112,18 @@ export class ListeRendezVousComponent implements OnInit {
       default:
         return status;
     }
+  }
+
+  cancelRdv(id: any) {
+    const body = {
+      idRendezVous: id,
+    };
+    this.rendezvousService.onCancelRvd(body).subscribe(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Succès',
+        detail: 'Rendez-vous annulé',
+      });
+    });
   }
 }

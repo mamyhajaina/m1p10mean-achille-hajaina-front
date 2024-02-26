@@ -4,6 +4,7 @@ import { Categorie } from '../../models/categorie';
 import { io, Socket } from 'socket.io-client';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environments } from 'src/environments/environments';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,10 +15,16 @@ export class HomeComponent implements OnInit {
   categories: Categorie[] = [];
   categorie: Categorie = new Categorie();
   socket!: Socket;
+  search = {
+    categorie: '',
+    service: '',
+  };
+  responseSearchService: any[] = [];
 
   constructor(
     private categorieService: CategorieService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -69,5 +76,64 @@ export class HomeComponent implements OnInit {
 
   toggleDiv50(data: boolean) {
     this.showDiv50 = data;
+  }
+
+  levenshteinDistance(a: string, b: string) {
+    if (a.length === 0) return b.length;
+    if (b.length === 0) return a.length;
+
+    const matrix = [];
+
+    for (let i = 0; i <= b.length; i++) {
+      matrix[i] = [i];
+    }
+
+    for (let j = 0; j <= a.length; j++) {
+      matrix[0][j] = j;
+    }
+
+    for (let i = 1; i <= b.length; i++) {
+      for (let j = 1; j <= a.length; j++) {
+        if (b.charAt(i - 1) === a.charAt(j - 1)) {
+          matrix[i][j] = matrix[i - 1][j - 1];
+        } else {
+          matrix[i][j] = Math.min(
+            matrix[i - 1][j - 1] + 1,
+            matrix[i][j - 1] + 1,
+            matrix[i - 1][j] + 1
+          );
+        }
+      }
+    }
+
+    return matrix[b.length][a.length];
+  }
+
+  searchProduit() {
+    console.log(this.search);
+    let responseSearchService: any;
+    responseSearchService = this.categories.filter((category) => {
+      return (
+        this.levenshteinDistance(
+          category.name.toLowerCase(),
+          this.search.categorie.toLowerCase()
+        ) <= 4
+      );
+    });
+    responseSearchService = responseSearchService[0];
+    this.responseSearchService = responseSearchService.service.filter(
+      (service: any) => {
+        return service.name
+          .toLowerCase()
+          .includes(this.search.service.toLowerCase());
+      }
+    );
+    if (this.responseSearchService.length) {
+      sessionStorage.setItem(
+        'service',
+        JSON.stringify(this.responseSearchService[0])
+      );
+      this.router.navigate(['/public/services']);
+    }
   }
 }

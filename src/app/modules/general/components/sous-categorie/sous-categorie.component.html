@@ -49,7 +49,7 @@
                                     <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)"
                                         placeholder="categorie" [showClear]="true">
                                         <ng-template let-option pTemplate="item">
-                                            {{option.value}}
+                                            <p-tag [value]="option.value" [severity]="option.serverity"></p-tag>
                                         </ng-template>
                                     </p-dropdown>
                                 </ng-template>

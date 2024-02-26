@@ -21,13 +21,12 @@
                     </ul>
                   </div>
                   <br>
-                  <input type="text" class="form-control px-3" placeholder="Coiffure">
+                  <input type="text" class="form-control px-3" [(ngModel)]="search.categorie" placeholder="Catégorie">
                   <br>
-                  <input type="text" class="form-control px-3" placeholder="Mèches ou balayage">
+                  <input type="text" class="form-control px-3" [(ngModel)]="search.service" placeholder="Service">
                   <br>
-                  <input type="date" class="form-control px-3">
-                  <br>
-                  <button type="button" class="btn btn-search px-3">Recherche</button>
+                  <button type="button" class="btn btn-search px-3" (click)="searchProduit()"
+                    [disabled]="!(search.categorie && search.categorie.length > 3 && search.service && search.service.length > 3)">Recherche</button>
                 </div>
               </div>
             </div>

@@ -48,13 +48,13 @@ export class SousCategorieComponent implements OnInit {
     const panierString = sessionStorage.getItem('panier');
     this.panier = panierString ? JSON.parse(panierString) : [];
     this.statuses = [
-      { label: 'Visage', value: 'visage' },
-      { label: 'Coiffure', value: 'coiffure' },
-      { label: 'Main & pieds', value: 'Main & pieds' },
-      { label: 'Epilation', value: 'epilation' },
-      { label: 'Corps', value: 'corps' },
-      { label: 'Homme', value: 'homme' },
-      { label: 'Massage', value: 'massage' },
+      { label: 'Visage', value: 'visage', serverity: 'primary' },
+      { label: 'Coiffure', value: 'coiffure', serverity: 'success' },
+      { label: 'Main & pieds', value: 'Main & pieds', serverity: 'danger' },
+      { label: 'Corps', value: 'corps', serverity: 'warning' },
+      { label: 'Epilation', value: 'epilation', serverity: 'primary' },
+      { label: 'Massage', value: 'massage', serverity: 'danger' },
+      { label: 'Homme', value: 'homme', serverity: 'warning' },
     ];
     for (let index = 0; index < this.panier.length; index++) {
       this.selectedProducts.push(this.panier[index]);
@@ -156,6 +156,8 @@ export class SousCategorieComponent implements OnInit {
   }
 
   getSeverity(status: string) {
+    console.log(status);
+
     switch (status) {
       case 'Coiffure':
         return 'success';
@@ -163,8 +165,8 @@ export class SousCategorieComponent implements OnInit {
       case 'Massage':
         return 'danger';
 
-      case 'Main et pieds':
-        return 'info';
+      case 'Main & pieds':
+        return 'danger';
 
       case 'Corps':
         return 'warning';

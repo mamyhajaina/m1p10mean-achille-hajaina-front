@@ -1,6 +1,7 @@
 <div class="wrapper">
     <div class="container container-panier">
         <br>
+        <p-toast [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
         <div class="card">
             <p-table #dt2 [value]="rendezVous" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
                 [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading" [paginator]="true"
@@ -9,11 +10,12 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th style="width:22%">Prestation</th>
-                        <th style="width:22%">Employeur</th>
+                        <th style="width:18%">Employeur</th>
                         <th style="width:15%">Prix</th>
                         <th style="width:15%">Reste</th>
                         <th style="width:22%">Status</th>
                         <th style="width:12%">Verifié</th>
+                        <th style="width:22%;">Action</th>
                     </tr>
                     <tr>
                         <th>
@@ -45,6 +47,7 @@
                         <th>
                             <p-columnFilter type="boolean" field="verified"></p-columnFilter>
                         </th>
+                        <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-customer>
@@ -63,18 +66,28 @@
                         <td>
                             {{customer.Service.prix - customer.payer}} Ar
                         </td>
-                        <td *ngIf="customer.etat[customer.etat.length-1].color === 'danger'">
+                        <td
+                            *ngIf="customer.etat[customer.etat.length-1].color === 'danger' && customer.cancel === false">
                             <p-tag [value]="'Refuser'"
                                 [severity]="getSeverity(customer.etat[customer.etat.length-1].color)"></p-tag>
                         </td>
-                        <td *ngIf="customer.etat[customer.etat.length-1].color !== 'danger'">
+                        <td
+                            *ngIf="customer.etat[customer.etat.length-1].color !== 'danger' && customer.cancel === false">
                             <p-tag [value]="customer.etat[customer.etat.length-1].name"
                                 [severity]="getSeverity(customer.etat[customer.etat.length-1].color)"></p-tag>
+                        </td>
+                        <td *ngIf="customer.cancel === true">
+                            <p-tag [value]="'Annuler'" [severity]="'danger'"></p-tag>
                         </td>
                         <td>
                             <i class="pi"
                                 [ngClass]="{ 'text-green-500 pi-check-circle': customer.verified, 'text-red-500 pi-times-circle': !customer.verified }"></i>
                         </td>
+                        <td *ngIf="customer.verified === false && customer.cancel === false">
+                            <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"
+                                (onClick)="cancelRdv(customer._id)"></p-button>
+                        </td>
+                        <td *ngIf="customer.verified === true"></td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">

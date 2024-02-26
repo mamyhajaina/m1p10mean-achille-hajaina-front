@@ -49,10 +49,11 @@
                     <div class="col-md-4">
                         <ul class="ListLinks-module--list--4bf07e">
                             <li *ngFor="let items of responseSearchService"><a class="ListLinks-module--link--205474"
-                                    href="" data-label="Coupe femme" data-index="0">{{items.name}}</a></li>
+                                    href="/public/services" data-label="Coupe femme" data-index="0"
+                                    (click)="onNavigateServices(items)">{{items.name}}</a></li>
                         </ul>
                         <ul class="ListLinks-module--list--4bf07e">
-                            <li><a class="ListLinks-module--link--205474" href="" style="color: #ff6668;"
+                            <li><a class="ListLinks-module--link--205474" href="/public/salon" style="color: #ff6668;"
                                     data-label="Toutes les offres de nos coiffeurs" data-index="6">Toutes nos
                                     prestations</a></li>
                         </ul>

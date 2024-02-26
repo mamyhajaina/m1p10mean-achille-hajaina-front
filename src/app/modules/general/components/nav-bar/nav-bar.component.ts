@@ -100,4 +100,8 @@ export class NavBarComponent implements OnInit {
       }
     );
   }
+
+  onNavigateServices(product: ServiceSalon) {
+    sessionStorage.setItem('service', JSON.stringify(product));
+  }
 }
