@@ -87,7 +87,7 @@
                             <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"
                                 (onClick)="cancelRdv(customer._id)"></p-button>
                         </td>
-                        <td *ngIf="customer.verified === true"></td>
+                        <td *ngIf="customer.verified === true || customer.cancel === true"></td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">
