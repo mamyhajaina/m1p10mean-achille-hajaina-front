@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { GeneralComponent } from './general.component';
 import { GeneralRoutes } from './general.routing.module';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -50,6 +50,7 @@ import { ListeRendezVousComponent } from './components/liste-rendez-vous/liste-r
 import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SkeletonModule } from 'primeng/skeleton';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   imports: [
@@ -88,6 +89,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     DataViewModule,
     ConfirmDialogModule,
     SkeletonModule,
+    TooltipModule,
   ],
   declarations: [
     GeneralComponent,
@@ -107,7 +109,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     PanierComponent,
   ],
   exports: [ButtonNotificationProfilComponent],
-  providers: [MessageService, HeureService, ConfirmationService],
+  providers: [MessageService, HeureService, ConfirmationService, DatePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class GeneralModule {}

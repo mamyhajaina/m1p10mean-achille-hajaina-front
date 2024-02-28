@@ -7,6 +7,8 @@ import { slideAnimation } from '../../models/animation';
 import { CategorieService } from '../../service/categorie.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { EmployeService } from '../../service/employe.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { RendezVousService } from '../../service/rendez-vous.service';
 @Component({
   selector: 'app-top-Service',
   templateUrl: './top-Service.component.html',
@@ -33,16 +35,31 @@ export class TopServiceComponent implements OnInit {
   };
   employerCat: any[] = [];
   responseCategorie: any = [];
+  Paiement: boolean = false;
+  product: any = [];
+  image: any;
+  name: any;
+  cat: any;
+  prix: any;
+  montant: any;
+  emplo: any;
+  date!: Date;
+  heure: any;
+  token: any;
 
   constructor(
     private serviceSalonService: ServiceSalonService,
     private categorieService: CategorieService,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private employeService: EmployeService
+    private employeService: EmployeService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
+    private rendezVousService: RendezVousService
   ) {}
 
   ngOnInit() {
+    this.token = localStorage.getItem('token');
     this.id_client = localStorage.getItem('id');
     if (!this.id_client) {
       this.visbleSsl = true;
@@ -102,7 +119,26 @@ export class TopServiceComponent implements OnInit {
     const body = {
       id: id,
     };
-    this.serviceSalonService.clearPreference(body).subscribe((data: any) => {});
+    this.serviceSalonService.clearPreference(body).subscribe((data: any) => {
+      this.messageService.add({
+        severity: 'info',
+        summary: '',
+        detail: 'Preference supprimé',
+      });
+      this.getPreference();
+    });
+  }
+
+  confirm(event: any, id: any) {
+    this.confirmationService.confirm({
+      target: event.target,
+      message: 'Etes-vous sur?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.deletePreference(id);
+      },
+      reject: () => {},
+    });
   }
 
   addPreference() {
@@ -172,6 +208,66 @@ export class TopServiceComponent implements OnInit {
       .savePreference(this.bodySave)
       .subscribe((data: any) => {
         this.visible = false;
+        this.getPreference();
+        this.messageService.add({
+          severity: 'success',
+          summary: '',
+          detail: 'Preference ajoutée',
+        });
+        this.bodySave = {
+          Categorie: '',
+          Service: '',
+          Employe: '',
+          Client: '',
+        };
+      });
+  }
+
+  navigatePaiement(product: any) {
+    this.product = product;
+    this.image = product.Service.image[0].name;
+    this.name = product.Service.name;
+    this.cat = product.Service.id_Categorie.name;
+    this.prix = product.Service.prix;
+    this.emplo = product.Employe.username;
+    this.Paiement = true;
+  }
+
+  payer() {
+    console.log(this.id_client, 'this.id_client');
+    console.log(this.emplo, 'idEmploye');
+    console.log(this.name, 'service');
+    console.log(this.date, 'date');
+    console.log(this.heure, 'heure');
+    console.log(this.montant, 'montant');
+    const body = [
+      {
+        idClient: this.id_client,
+        idEmploye: this.product.Employe._id,
+        service: this.product.Service._id,
+        date: this.date.toString().concat(` ` + this.heure),
+        payer: this.montant,
+      },
+    ];
+    this.rendezVousService
+      .setRendezVous(body, this.token)
+      .subscribe((data: any) => {
+        let bodyPaiement: any[] = [];
+        bodyPaiement[0] = {
+          idRendezVous: data[0].id,
+          montant: this.montant,
+        };
+        this.rendezVousService.payer(bodyPaiement, this.token).subscribe(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Confirmé',
+            detail: 'Prise de rendez-vous succèes',
+          });
+          this.Paiement = false;
+          setTimeout(() => {
+            this.router.navigate(['/public/client']);
+          }, 2000);
+        });
       });
   }
 }

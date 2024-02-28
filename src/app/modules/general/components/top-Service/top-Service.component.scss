@@ -28,8 +28,8 @@
 }
 
 ::ng-deep {
-  .custom-carousel {
-    height: 90% !important;
-    max-height: 100% !important;
+
+  .car-buttons .p-button {
+    margin-right: 20px !important;
   }
 }

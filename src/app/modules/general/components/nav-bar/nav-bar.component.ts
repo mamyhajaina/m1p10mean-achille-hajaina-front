@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { CategorieService } from '../../service/categorie.service';
 import { Categorie } from '../../models/categorie';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -7,7 +7,7 @@ import { ServiceSalon } from '../../models/serviceSalon';
 import { io, Socket } from 'socket.io-client';
 import { Router } from '@angular/router';
 import { environments } from 'src/environments/environments';
-import { Location } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 
 @Component({
   selector: 'app-nav-bar',
@@ -21,15 +21,24 @@ export class NavBarComponent implements OnInit {
   activeItem: string | null = null;
   socket!: Socket;
   currentUrl: string;
+  date: Date = new Date();
+  heure: any;
+  private clockInterval: any;
 
   constructor(
     private serviceSalonService: ServiceSalonService,
     private categorieService: CategorieService,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private datePipe: DatePipe
   ) {
     this.currentUrl = this.router.url;
+    this.heure = this.datePipe.transform(this.date, 'HH:mm:ss');
+    this.clockInterval = setInterval(() => {
+      this.date = new Date();
+      this.heure = this.datePipe.transform(this.date, 'HH:mm:ss');
+    }, 1000);
   }
 
   ngOnInit() {

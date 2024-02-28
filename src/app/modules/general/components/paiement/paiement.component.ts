@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DatePipe, Location } from '@angular/common';
 import { RendezVousService } from '../../service/rendez-vous.service';
 import {
   ConfirmEventType,
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   templateUrl: './paiement.component.html',
   styleUrls: ['./paiement.component.scss'],
 })
-export class PaiementComponent implements OnInit {
+export class PaiementComponent implements OnInit, OnDestroy {
   dataPaiement: any[] = [];
   total: number = 0;
   listPrix: number[] = [];
@@ -22,6 +22,9 @@ export class PaiementComponent implements OnInit {
   token: any;
   visible: boolean = false;
   position: string = '';
+  date: Date = new Date();
+  heure: any;
+  private clockInterval: any;
 
   constructor(
     private location: Location,
@@ -29,8 +32,19 @@ export class PaiementComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private spinner: NgxSpinnerService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private datePipe: DatePipe
+  ) {
+    this.heure = this.datePipe.transform(this.date, 'HH:mm:ss');
+    this.clockInterval = setInterval(() => {
+      this.date = new Date();
+      this.heure = this.datePipe.transform(this.date, 'HH:mm:ss');
+    }, 1000);
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.clockInterval);
+  }
 
   ngOnInit() {
     sessionStorage.setItem('url', this.location.path());
@@ -85,6 +99,7 @@ export class PaiementComponent implements OnInit {
           };
         }
         this.rendezVousService.payer(bodyPaiement, this.token).subscribe(() => {
+          this.ngOnDestroy();
           sessionStorage.clear();
           this.messageService.add({
             severity: 'info',

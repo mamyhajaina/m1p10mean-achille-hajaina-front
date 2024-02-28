@@ -71,10 +71,10 @@
                 <table class='half-input-table'>
                   <tr>
                     <td>Date
-                      <input class='input-field' placeholder="mm-dd-yy">
+                      <input class='input-field' placeholder="mm-dd-yy" [value]="date | date: 'MM-dd-yy'">
                     </td>
                     <td>Heure
-                      <input class='input-field'>
+                      <input class='input-field' [value]="heure">
                     </td>
                   </tr>
                 </table>
