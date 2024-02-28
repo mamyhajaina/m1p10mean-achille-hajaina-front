@@ -10,30 +10,12 @@ const routes: Routes = [
   {
     path: 'public',
     loadChildren: () =>
-      import('./modules/general/general.module').then(
-        (m) => m.GeneralModule
-      ),
-  },
-  {
-    path: 'employe',
-    loadChildren: () =>
-      import('./modules/employe/employe.module').then(
-        (m) => m.EmployeModule
-      ),
-  },
-  {
-    path: 'manager',
-    loadChildren: () =>
-      import('./modules/manager/manager.module').then(
-        (m) => m.ManagerModule
-      ),
+      import('./modules/general/general.module').then((m) => m.GeneralModule),
   },
   {
     path: 'auth',
     loadChildren: () =>
-      import('./modules/auth/auth.module').then(
-        (m) => m.AuthModule
-      ),
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: '**',
@@ -45,4 +27,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

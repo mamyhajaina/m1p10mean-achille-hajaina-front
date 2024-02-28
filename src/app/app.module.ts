@@ -1,4 +1,3 @@
-import { EmployeModule } from './modules/employe/employe.module';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -22,4 +21,4 @@ import { HttpClientModule } from '@angular/common/http';
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

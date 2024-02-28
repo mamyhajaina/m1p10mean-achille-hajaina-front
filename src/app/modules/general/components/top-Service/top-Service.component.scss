@@ -1,0 +1,35 @@
+.card-body {
+  cursor: pointer;
+}
+
+.d-flex.align-items-stretch {
+  flex-basis: 250px;
+}
+
+.d-flex.align-items-stretch {
+  justify-content: space-between;
+}
+
+:host ::ng-deep {
+  .product-item {
+    .product-item-content {
+      border: 1px solid var(--surface-d);
+      border-radius: 3px;
+      margin: .3rem;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    p-image {
+      width: 50%;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+    }
+  }
+}
+
+::ng-deep {
+  .custom-carousel {
+    height: 90% !important;
+    max-height: 100% !important;
+  }
+}

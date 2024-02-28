@@ -5,10 +5,7 @@ import { GeneralRoutes } from './general.routing.module';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HeaderAdminComponent } from './components/Header-Admin/Header-Admin.component';
 import { DetailsComponent } from './pages/details/details.component';
-import { MenuAdminComponent } from './components/menu-Admin/menu-Admin.component';
-import { FooterAdminComponent } from './components/footerAdmin/footerAdmin.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -97,11 +94,8 @@ import { SkeletonModule } from 'primeng/skeleton';
     NavBarComponent,
     HomeComponent,
     FooterComponent,
-    HeaderAdminComponent,
     PaiementComponent,
     DetailsComponent,
-    MenuAdminComponent,
-    FooterAdminComponent,
     AboutComponent,
     ServicesComponent,
     ContactComponent,
@@ -112,12 +106,7 @@ import { SkeletonModule } from 'primeng/skeleton';
     ServicesComponent,
     PanierComponent,
   ],
-  exports: [
-    FooterAdminComponent,
-    HeaderAdminComponent,
-    MenuAdminComponent,
-    ButtonNotificationProfilComponent,
-  ],
+  exports: [ButtonNotificationProfilComponent],
   providers: [MessageService, HeureService, ConfirmationService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
