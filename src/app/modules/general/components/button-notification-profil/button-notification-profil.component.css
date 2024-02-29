@@ -3,3 +3,6 @@
 .espace-btn .nav-item.dropdown:first-child + .nav-item.dropdown button {
   margin-left: 10px;
 }
+.vue-true {
+  background-color: #95707080; /* Remplacez par la couleur de fond souhaitée */
+}

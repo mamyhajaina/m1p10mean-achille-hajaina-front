@@ -234,12 +234,6 @@ export class TopServiceComponent implements OnInit {
   }
 
   payer() {
-    console.log(this.id_client, 'this.id_client');
-    console.log(this.emplo, 'idEmploye');
-    console.log(this.name, 'service');
-    console.log(this.date, 'date');
-    console.log(this.heure, 'heure');
-    console.log(this.montant, 'montant');
     const body = [
       {
         idClient: this.id_client,
