@@ -51,8 +51,9 @@
                 <div class="row">
                     <div class="col-md-4">
                         <ul class="ListLinks-module--list--4bf07e">
-                            <li *ngFor="let items of responseSearchService"><a class="ListLinks-module--link--205474"
-                                    href="/public/services" data-label="Coupe femme" data-index="0"
+                            <li *ngFor="let items of responseSearchService.slice(0, 6)"><a
+                                    class="ListLinks-module--link--205474" href="/public/services"
+                                    data-label="Coupe femme" data-index="0"
                                     (click)="onNavigateServices(items)">{{items.name}}</a></li>
                         </ul>
                         <ul class="ListLinks-module--list--4bf07e">
