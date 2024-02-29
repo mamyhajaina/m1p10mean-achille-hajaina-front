@@ -3,19 +3,19 @@
         <br>
         <p-toast [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
         <div class="card">
-            <p-table #dt2 [value]="rendezVous" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+            <p-table #dt2 [value]="rendezVous" dataKey="_id" [rows]="10" [showCurrentPageReport]="true"
                 [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading" [paginator]="true"
                 [globalFilterFields]="['Service.name', 'country.name', 'Service.prix', 'status']"
-                [tableStyle]="{ 'min-width': '75rem', 'min-height': minHeight  }">
+                [tableStyle]="{ 'min-width': '75rem', 'min-height': minHeight  }" editMode="row">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width:22%">Prestation</th>
-                        <th style="width:18%">Employeur</th>
-                        <th style="width:15%">Prix</th>
-                        <th style="width:15%">Reste</th>
-                        <th style="width:22%">Status</th>
-                        <th style="width:12%">Verifié</th>
-                        <th style="width:22%;">Action</th>
+                        <th style="width:20%">Prestation</th>
+                        <th style="width:13%">Employeur</th>
+                        <th style="width:12%">Prix</th>
+                        <th style="width:12%">Reste</th>
+                        <th style="width:18%">Status</th>
+                        <th style="width:8%;">Action</th>
+                        <th style="width: 20%;">Payer</th>
                     </tr>
                     <tr>
                         <th>
@@ -44,14 +44,12 @@
                                 </ng-template>
                             </p-columnFilter>
                         </th>
-                        <th>
-                            <p-columnFilter type="boolean" field="verified"></p-columnFilter>
-                        </th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-customer>
-                    <tr>
+                <ng-template pTemplate="body" let-customer let-editing="editing" let-ri="rowIndex">
+                    <tr [pEditableRow]="customer">
                         <td>
                             {{ customer.Service.name }}
                         </td>
@@ -63,8 +61,18 @@
                         <td>
                             {{customer.Service.prix}} Ar
                         </td>
-                        <td>
-                            {{customer.Service.prix - customer.payer}} Ar
+                        <td *ngIf="!customer.cancel">
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <input pInputText type="text" [(ngModel)]="restePayer" required>
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                    {{customer.Service.prix - customer.payer}} Ar
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <td *ngIf="customer.cancel">
+                            0 Ar
                         </td>
                         <td
                             *ngIf="customer.etat[customer.etat.length-1].color === 'danger' && customer.cancel === false">
@@ -79,15 +87,25 @@
                         <td *ngIf="customer.cancel === true">
                             <p-tag [value]="'Annuler'" [severity]="'danger'"></p-tag>
                         </td>
-                        <td>
-                            <i class="pi"
-                                [ngClass]="{ 'text-green-500 pi-check-circle': customer.verified, 'text-red-500 pi-times-circle': !customer.verified }"></i>
-                        </td>
                         <td *ngIf="customer.verified === false && customer.cancel === false">
                             <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"
                                 (onClick)="cancelRdv(customer._id)"></p-button>
                         </td>
                         <td *ngIf="customer.verified === true || customer.cancel === true"></td>
+                        <td *ngIf="customer.Service.prix - customer.payer !== 0">
+                            <div class="flex align-items-center justify-content-center gap-2">
+                                <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow
+                                    icon="pi pi-pencil" (click)="onRowEditInit(customer)"
+                                    class="p-button-rounded p-button-text"></button>
+                                <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow
+                                    icon="pi pi-check" (click)="onRowEditSave(customer)"
+                                    class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                                <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow
+                                    icon="pi pi-times" (click)="onRowEditCancel(customer, ri)"
+                                    class="p-button-rounded p-button-text p-button-danger"></button>
+                            </div>
+                        </td>
+                        <td *ngIf="customer.Service.prix - customer.payer === 0"></td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">

@@ -78,7 +78,9 @@
                     </td>
                   </tr>
                 </table>
-                <button class='pay-btn' (click)="confirmPosition()">Payer</button>
+                <button class='pay-btn' (click)="confirmPosition()"
+                  [ngClass]="{'disabledBtn': !disabledButton}">Payer</button>
+                <p-messages [(value)]="messages" [enableService]="false"></p-messages>
               </div>
             </div>
           </div>

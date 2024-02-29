@@ -45,3 +45,7 @@
 .footer-content {
     z-index: 1;
 }
+
+:host ::ng-deep .row-accessories {
+    background-color: rgba(0, 0, 0, 0.15) !important;
+}

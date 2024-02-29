@@ -21,11 +21,11 @@ const routes: Routes = [
         component: HomeComponent, // child route component that the router renders
       },
       {
-        path: 'details', // child route path
+        path: 'porte-feuille', // child route path
         component: DetailsComponent, // child route component that the router renders
       },
       {
-        path: 'about', // child route path
+        path: 'profil', // child route path
         component: AboutComponent, // child route component that the router renders
       },
       {

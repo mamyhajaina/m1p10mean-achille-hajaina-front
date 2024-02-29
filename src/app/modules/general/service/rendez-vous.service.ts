@@ -25,6 +25,19 @@ export class RendezVousService {
     );
   }
 
+  updateOne(data: any, token: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+    return this.http.post(
+      `${environments.BASE_URL}/rendezVous/updateOne`,
+      data,
+      httpOptions
+    );
+  }
+
   payer(data: any, token: string) {
     const httpOptions = {
       headers: new HttpHeaders({

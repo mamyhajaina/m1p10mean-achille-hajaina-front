@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { RendezVousService } from '../../service/rendez-vous.service';
 import { Table } from 'primeng/table';
 import { MessageService } from 'primeng/api';
+import { EmployeService } from '../../service/employe.service';
 
 export interface Country {
   name: string;
@@ -47,10 +48,13 @@ export class ListeRendezVousComponent implements OnInit {
   userId: any;
   token: any;
   minHeight: string = '';
-
+  checked: any;
+  clonedProducts: { [s: string]: any } = {};
+  restePayer: any;
   constructor(
     private rendezvousService: RendezVousService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private portefeuille: EmployeService
   ) {}
 
   ngOnInit() {
@@ -70,6 +74,49 @@ export class ListeRendezVousComponent implements OnInit {
         value: 'Encour de traitement',
       },
     ];
+  }
+
+  onRowEditInit(product: any) {
+    this.clonedProducts[product.id] = { ...product };
+  }
+
+  onRowEditSave(product: any) {
+    console.log(product);
+    if (product.Service.prix - product.payer <= this.restePayer) {
+      const body = {
+        idRendezVous: product._id,
+        payer: product.Service.prix,
+      };
+      this.rendezvousService.updateOne(body, this.token).subscribe((data) => {
+        const dbody = [
+          {
+            idRendezVous: product._id,
+            montant: this.restePayer,
+          },
+        ];
+        this.rendezvousService.payer(dbody, this.token).subscribe((data) => {
+          const badaka = [
+            {
+              entrer: 0,
+              sortie: this.restePayer,
+              User: this.userId,
+            },
+          ];
+          this.portefeuille.achat(badaka).subscribe((data) => {});
+        });
+      });
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Erreur',
+        detail: 'Montant invalide',
+      });
+    }
+  }
+
+  onRowEditCancel(product: any, index: number) {
+    this.rendezVous[index] = this.clonedProducts[product.id];
+    delete this.clonedProducts[product.id];
   }
 
   getRendezVousByUser() {

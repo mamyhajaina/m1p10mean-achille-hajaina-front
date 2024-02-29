@@ -4,10 +4,12 @@ import { RendezVousService } from '../../service/rendez-vous.service';
 import {
   ConfirmEventType,
   ConfirmationService,
+  Message,
   MessageService,
 } from 'primeng/api';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
+import { EmployeService } from '../../service/employe.service';
 
 @Component({
   selector: 'app-paiement',
@@ -25,6 +27,9 @@ export class PaiementComponent implements OnInit, OnDestroy {
   date: Date = new Date();
   heure: any;
   private clockInterval: any;
+  solde: number = 0;
+  messages: Message[] = [];
+  disabledButton: boolean = false;
 
   constructor(
     private location: Location,
@@ -33,7 +38,8 @@ export class PaiementComponent implements OnInit, OnDestroy {
     private messageService: MessageService,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private portefeuille: EmployeService
   ) {
     this.heure = this.datePipe.transform(this.date, 'HH:mm:ss');
     this.clockInterval = setInterval(() => {
@@ -47,25 +53,35 @@ export class PaiementComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.getPortef();
     sessionStorage.setItem('url', this.location.path());
     const paiementString = sessionStorage.getItem('paiement');
     this.userId = localStorage.getItem('id');
     this.token = localStorage.getItem('token');
     this.dataPaiement = paiementString ? JSON.parse(paiementString) : [];
     this.total = this.dataPaiement[this.dataPaiement.length - 1].total;
-    this.addListPrix();
-    console.log(this.dataPaiement);
   }
 
   addListPrix() {
     for (let index = 0; index < this.dataPaiement.length; index++) {
       this.listPrix[index] = this.dataPaiement[index].prix;
     }
-    console.log(this.listPrix);
+    this.getTotalListPrix();
   }
 
   getTotalListPrix() {
     this.total = this.listPrix.reduce((acc, value) => acc + value, 0);
+    if (this.solde >= this.total) {
+      this.disabledButton = true;
+      this.messages = [
+        { severity: 'success', summary: '', detail: 'Solde OK' },
+      ];
+    } else {
+      this.disabledButton = false;
+      this.messages = [
+        { severity: 'error', summary: '', detail: 'Solde insuffisant' },
+      ];
+    }
   }
 
   onCancelPaiement(data: any) {
@@ -73,6 +89,15 @@ export class PaiementComponent implements OnInit, OnDestroy {
     const index = this.dataPaiement.indexOf(data);
     this.dataPaiement.splice(index, 1);
     sessionStorage.setItem('paiement', JSON.stringify(this.dataPaiement));
+  }
+
+  getPortef() {
+    this.portefeuille
+      .getPorteFeuille(localStorage.getItem('id'))
+      .subscribe((data: any) => {
+        this.solde = data;
+        this.addListPrix();
+      });
   }
 
   saveRendezVous() {
@@ -106,6 +131,14 @@ export class PaiementComponent implements OnInit, OnDestroy {
             summary: 'Confirmé',
             detail: 'Prise de rendez-vous succèes',
           });
+          const badaka = [
+            {
+              entrer: 0,
+              sortie: this.total,
+              User: this.userId,
+            },
+          ];
+          this.portefeuille.achat(badaka).subscribe((data) => {});
           this.spinner.hide('payer');
           setTimeout(() => {
             this.router.navigate(['/public/client']);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environments } from 'src/environments/environments';
-import { MatDialog } from '@angular/material/dialog';
-import { ListeRendezVousComponent } from '../../components/liste-rendez-vous/liste-rendez-vous.component';
+import { EmployeService } from '../../service/employe.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-details',
@@ -10,18 +10,41 @@ import { ListeRendezVousComponent } from '../../components/liste-rendez-vous/lis
 })
 export class DetailsComponent implements OnInit {
   environments = environments;
+  solde: number = 0;
+  depot: any;
+  constructor(
+    private portefeuille: EmployeService,
+    private messageService: MessageService
+  ) {}
 
-  constructor(private dialog: MatDialog) {}
-
-  ngOnInit() {}
-
-  priseRendezVous() {
-    this.showPopupPriseRendezVous();
+  ngOnInit() {
+    this.getPortef();
   }
 
-  showPopupPriseRendezVous() {
-    this.dialog.open(ListeRendezVousComponent, {
-      width: '70%',
+  getPortef() {
+    this.portefeuille
+      .getPorteFeuille(localStorage.getItem('id'))
+      .subscribe((data: any) => {
+        this.solde = data;
+      });
+  }
+
+  depotArgent() {
+    const body = [
+      {
+        entrer: this.depot,
+        sortie: 0,
+        User: localStorage.getItem('id'),
+      },
+    ];
+    this.portefeuille.setPortefeuille(body).subscribe((data) => {
+      this.getPortef();
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Confirmé',
+        detail: 'Dépôt success',
+      });
+      this.depot = '';
     });
   }
 }

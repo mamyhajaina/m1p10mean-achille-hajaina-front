@@ -29,6 +29,11 @@
     display: block;
 }
 
+.disabledBtn {
+    cursor: not-allowed !important;
+    background: #013b22 !important;
+}
+
 .dropdown {
     position: relative;
 }
